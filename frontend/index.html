@@ -1,0 +1,608 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>ResiReach — Skyhills Apartment</title>
+  <meta name="description"
+    content="ResiReach — One stop portal for residents. Notices, events, RWA, and home services." />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <!-- TOP NAV -->
+  <div class="topbar" role="banner">
+    <div class="container nav" role="navigation" aria-label="Main navigation">
+      <div class="logo">
+        <img src="image.png" alt="Skyhills Apartment Logo" class="logo-img" />
+      </div>
+      <nav class="nav-links" id="navLinks">
+        <a href="index.html" style="color: #e7770e;">Home</a>
+        <a href="about page.html">About Society</a>
+        <a href="comittee.html">RWA Members</a>
+        <a href="#notices">Notices</a>
+        <a href="#events">Events</a>
+        <a href="services.html">Services</a>
+        <a href="#docs"> Service Provider</a>
+        <a href="#contact">Contact</a>
+        <a class="cta" href="login.html" id="requestBtnTop">Resident Login</a>
+      </nav>
+      <button class="hamburger" id="hamburger" aria-label="Open menu">☰</button>
+    </div>
+  </div>
+
+  <main>
+    <section id="home" class="container main-section"> <!-- Home/Main Section -->
+      <!-- HERO -->
+      <section class="hero" aria-labelledby="hero-heading">
+        <div class="hero-left">
+          <h1 id="hero-heading">Welcome to <strong><span class="auto-type" style="color: rgb(255, 255, 255);"></span></strong></h1>
+          <p>One-stop resident portal for notices, events, RWA details and doorstep home services. Trusted, local and
+            easy to use.</p>
+          <div class="hero-ctas">
+            <button class="btn btn-primary" id="requestBtn">Request a Service</button>
+            <a class="btn btn-outline" href="#notices">View Notices</a>
+          </div>
+
+          <!-- quick highlights -->
+          <div class="highlights-container">
+            <div class="highlight-card">
+              <div class="highlight-title">24/7 Security</div>
+              <div class="small-muted">Secure gated community</div>
+            </div>
+            <div class="highlight-card">
+              <div class="highlight-title">Trusted Vendors</div>
+              <div class="small-muted">Verified & reviewed</div>
+            </div>
+          </div>
+        </div>
+
+
+
+      </section>
+
+    </section>
+
+    <!-- ABOUT PAGE SECTION (hidden by default) -->
+    <section id="about" class="container main-section" style="display:none;">
+      <div class="about-hero"
+        style="padding:60px 0;text-align:center;background:linear-gradient(rgba(255,255,255,0.9),rgba(255,255,255,0.9)),url('https://via.placeholder.com/1200x400?text=Skyhills+Apartment') center/cover no-repeat;margin-bottom:40px;">
+        <h1>About Skyhills Apartment</h1>
+        <p>Discover the story of our community, our values, and the exceptional living experience we offer to our
+          residents.</p>
+      </div>
+      <div class="about-section">
+        <div class="section-title">
+          <h2>Our Story</h2>
+        </div>
+        <div class="about-content" style="display:grid;grid-template-columns:1fr 1fr;gap:40px;margin-bottom:40px;">
+          <div>
+            <p>Skyhills Apartment was established in 2008 with a vision to create more than just a residential
+              complex—we aimed to build a thriving community where families could grow, connect, and flourish together.
+            </p>
+            <p>Nestled in a prime location with easy access to city amenities while maintaining a serene environment,
+              Skyhills has become one of the most sought-after residential communities in the region.</p>
+            <p>Over the years, we've continually evolved, adding new amenities and upgrading facilities to ensure our
+              residents enjoy the highest quality of life possible.</p>
+          </div>
+          <div class="about-image" style="border-radius:8px;overflow:hidden;box-shadow:0 5px 15px rgba(0,0,0,0.1);">
+            <img src="aerial view.png" alt="Aerial view of Skyhills Apartment complex"
+              style="width:100%;height:auto;display:block;">
+          </div>
+        </div>
+      </div>
+      <!-- You can add more about page content here if needed -->
+    </section>
+
+    <!-- LOGIN SECTION (hidden by default) -->
+    <section id="login" class="container main-section" style="display:none;max-width:400px;">
+      <div class="form-box"
+        style="background:white;padding:30px;border-radius:10px;width:100%;box-shadow:0 5px 15px rgba(0,0,0,0.2);text-align:center;margin:40px auto;">
+        <h2>Login</h2>
+        <form>
+          <input type="email" placeholder="Email" required
+            style="width:100%;padding:12px;margin:10px 0;border:1px solid #ccc;border-radius:5px;outline:none;">
+          <input type="password" placeholder="Password" required
+            style="width:100%;padding:12px;margin:10px 0;border:1px solid #ccc;border-radius:5px;outline:none;">
+          <button type="submit"
+            style="width:100%;padding:12px;margin-top:10px;background:#4facfe;border:none;color:white;font-size:16px;border-radius:5px;cursor:pointer;">Login</button>
+        </form>
+        <p style="margin-top:15px;font-size:14px;">Don’t have an account? <a href="#signup" data-section="signup">Sign
+            Up</a></p>
+      </div>
+    </section>
+
+    <!-- SIGNUP SECTION (hidden by default) -->
+    <section id="signup" class="container main-section" style="display:none;max-width:400px;">
+      <div class="form-box"
+        style="background:white;padding:30px;border-radius:10px;width:100%;box-shadow:0 5px 15px rgba(0,0,0,0.2);text-align:center;margin:40px auto;">
+        <h2>Sign Up</h2>
+        <form>
+          <input type="text" placeholder="Full Name" required
+            style="width:100%;padding:12px;margin:10px 0;border:1px solid #ccc;border-radius:5px;outline:none;">
+          <input type="email" placeholder="Email" required
+            style="width:100%;padding:12px;margin:10px 0;border:1px solid #ccc;border-radius:5px;outline:none;">
+          <input type="password" placeholder="Password" required
+            style="width:100%;padding:12px;margin:10px 0;border:1px solid #ccc;border-radius:5px;outline:none;">
+          <button type="submit"
+            style="width:100%;padding:12px;margin-top:10px;background:#43e97b;border:none;color:white;font-size:16px;border-radius:5px;cursor:pointer;">Sign
+            Up</button>
+        </form>
+        <p style="margin-top:15px;font-size:14px;">Already have an account? <a href="#login"
+            data-section="login">Login</a></p>
+      </div>
+    </section>
+    <section id="rwa" aria-labelledby="rwaTitle">
+      <div class="section-title">
+        <h2 id="rwaTitle">Meet Your Society Committee</h2>
+        <a href="#contact" class="small-muted" style="margin-bottom:2px;display:inline-block;">Contact committee</a>
+        <a href="comittee.html" class="small-muted" style="margin-top:2px;display:inline-block;">Know more about
+          committee</a>
+      </div>
+
+      <div class="grid rwa-grid">
+        <!-- Repeat for each member -->
+        <div class="rwa-card">
+          <div class="rwa-photo" aria-hidden="true" style="overflow: hidden;">
+            <img src="president.png" alt="President Photo"
+              style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;" />
+          </div>
+          <div style="font-weight:700;margin-top:8px">Mr. Ramesh Kumar</div>
+          <div class="role">President</div>
+          <div style="margin-top:8px"><a href="mailto:president@example.com"
+              class="small-muted">president@example.com</a></div>
+        </div>
+
+        <div class="rwa-card">
+          <div class="rwa-photo" aria-hidden="true" style="overflow: hidden;">
+            <img src="secretary.png" alt="Secretary Photo"
+              style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;" />
+          </div>
+          <div style="font-weight:700;margin-top:8px">Ms. Anjali Sharma</div>
+          <div class="role">Secretary</div>
+          <div style="margin-top:8px"><a href="mailto:secretary@example.com"
+              class="small-muted">secretary@example.com</a></div>
+        </div>
+
+        <div class="rwa-card">
+          <div class="rwa-photo" aria-hidden="true" style="overflow: hidden;">
+            <img src="tresaurer.jpg" alt="Treasurer Photo"
+              style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;" />
+          </div>
+          <div style="font-weight:700;margin-top:8px">Mr. Sunil Jain</div>
+          <div class="role">Treasurer</div>
+          <div style="margin-top:8px"><a href="mailto:treasurer@example.com"
+              class="small-muted">treasurer@example.com</a></div>
+        </div>
+
+        <div class="rwa-card">
+          <div class="rwa-photo" aria-hidden="true" style="overflow: hidden;">
+            <img src="member.jpg" alt="Member Photo"
+              style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;" />
+          </div>
+          <div style="font-weight:700;margin-top:8px">Ms. Priya Verma</div>
+          <div class="role">Member</div>
+          <div style="margin-top:8px"><a href="mailto:member@example.com" class="small-muted">member@example.com</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- NOTICES -->
+    <section id="notices" aria-labelledby="noticesTitle">
+      <div class="section-title">
+        <h2 id="noticesTitle">Latest Notices</h2>
+        <a href="#notices">View All</a>
+      </div>
+
+      <div class="scrollable-notices">
+        <div class="notice-item" role="article" aria-label="Notice: Maintenance">
+          <div>
+            <div style="font-weight:700">Monthly Maintenance Due</div>
+            <div class="notice-meta">25 Sep 2025 — Please clear dues online or at office</div>
+          </div>
+          <div class="small-muted">Download</div>
+        </div>
+
+        <div class="notice-item" role="article" aria-label="Notice: Water shutdown" style="margin-top:10px">
+          <div>
+            <div style="font-weight:700">Water Shutdown</div>
+            <div class="notice-meta">28 Sep 2025 — Water supply will be off from 10 AM to 4 PM</div>
+          </div>
+          <div class="small-muted">Important</div>
+        </div>
+
+        <div class="notice-item" role="article" aria-label="Notice: Parking">
+          <div>
+            <div style="font-weight:700">Parking Sticker Distribution</div>
+            <div class="notice-meta">2 Oct 2025 — Collect from society office</div>
+          </div>
+          <div class="small-muted">Info</div>
+        </div>
+        <div class="notice-item">
+          <div>
+            <div style="font-weight:700">Lift Maintenance</div>
+            <div class="notice-meta">5 Oct 2025 — Lift C will be out of service from 2–6 PM</div>
+          </div>
+          <div class="small-muted">Notice</div>
+        </div>
+
+        <div class="notice-item">
+          <div>
+            <div style="font-weight:700">Gym Renovation</div>
+            <div class="notice-meta">10 Oct 2025 — Gym closed for renovation</div>
+          </div>
+          <div class="small-muted">Update</div>
+        </div>
+
+        <div class="notice-item">
+          <div>
+            <div style="font-weight:700">Festival Decoration Contribution</div>
+            <div class="notice-meta">15 Oct 2025 — Please contribute at office by 12 Oct</div>
+          </div>
+          <div class="small-muted">Info</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- EVENTS -->
+    <section id="events" aria-labelledby="eventsTitle">
+      <div class="section-title">
+        <h2 id="eventsTitle">Community Events</h2>
+        <a href="#events">Calendar</a>
+      </div>
+
+      <div class="events-slider-container">
+        <button class="events-btn events-btn-left" aria-label="Previous events" type="button">&#8592;</button>
+        <div class="events-slider" id="eventsSlider">
+
+          <div class="event-card">
+            <div style="display:flex;justify-content:space-between;align-items:center">
+              <div>
+                <div style="font-weight:700">Ganesh Chaturthi Celebrations</div>
+                <div class="small-muted">Community Mandap — Open to all residents</div>
+              </div>
+              <div class="event-date">20 Sep</div>
+            </div>
+            <div style="margin-top:10px">
+              <button class="btn btn-outline" style="padding:8px 10px">RSVP</button>
+            </div>
+          </div>
+
+          <div class="event-card">
+            <div style="display:flex;justify-content:space-between;align-items:center">
+              <div>
+                <div style="font-weight:700">Annual General Meeting</div>
+                <div class="small-muted">Society Hall — Agenda: Budget & Facilities</div>
+              </div>
+              <div class="event-date">05 Oct</div>
+            </div>
+            <div style="margin-top:10px">
+              <button class="btn btn-outline">Details</button>
+            </div>
+          </div>
+
+          <!-- New Events -->
+          <div class="event-card">
+            <div style="display:flex;justify-content:space-between;align-items:center">
+              <div>
+                <div style="font-weight:700">Diwali Mela</div>
+                <div class="small-muted">Food stalls, music & fireworks</div>
+              </div>
+              <div class="event-date">10 Nov</div>
+            </div>
+            <div style="margin-top:10px">
+              <button class="btn btn-outline">Join</button>
+            </div>
+          </div>
+
+          <div class="event-card">
+            <div style="display:flex;justify-content:space-between;align-items:center">
+              <div>
+                <div style="font-weight:700">Christmas Carnival</div>
+                <div class="small-muted">Gifts, Santa, and fun games</div>
+              </div>
+              <div class="event-date">25 Dec</div>
+            </div>
+            <div style="margin-top:10px">
+              <button class="btn btn-outline">Details</button>
+            </div>
+          </div>
+
+          <div class="event-card">
+            <div style="display:flex;justify-content:space-between;align-items:center">
+              <div>
+                <div style="font-weight:700">New Year Bash</div>
+                <div class="small-muted">Live DJ & midnight celebration</div>
+              </div>
+              <div class="event-date">31 Dec</div>
+            </div>
+            <div style="margin-top:10px">
+              <button class="btn btn-outline">RSVP</button>
+            </div>
+          </div>
+
+        </div>
+        <button class="events-btn events-btn-right" aria-label="Next events" type="button">&#8594;</button>
+      </div>
+    </section>
+
+
+    <!-- SERVICES -->
+    <section id="services" aria-labelledby="servicesTitle">
+      <div class="section-title">
+        <h2 id="servicesTitle">Services at Your Doorstep</h2>
+        <a href="#services" class="small-muted">All Services</a>
+      </div>
+      <div class="services-slider-container">
+        <button class="slider-btn slider-btn-left" aria-label="Previous services" type="button">&#8592;</button>
+        <div class="services-slider" id="servicesSlider">
+          <div class="service-card">
+            <div class="service-ico" aria-hidden="true">
+              <img src="cleaner_4079178.png" alt="Maid / Cleaning" />
+            </div>
+            <div style="font-weight:700">Maid / Cleaning</div>
+            <div class="small-muted" style="margin-top:6px">Trusted housekeeping</div>
+            <button class="btn btn-primary" data-service="Maid / Cleaning">Request Now</button>
+          </div>
+          <div class="service-card">
+            <div class="service-ico" aria-hidden="true">
+              <img src="cooking_1830839.png" alt="Cook" />
+            </div>
+            <div style="font-weight:700">Cook</div>
+            <div class="small-muted" style="margin-top:6px">Daily / Occasional cook</div>
+            <button class="btn btn-primary" data-service="Cook">Request Now</button>
+          </div>
+          <div class="service-card">
+            <div class="service-ico" aria-hidden="true">
+              <img src="carpenter_12479583.png" alt="Carpenter" />
+            </div>
+            <div style="font-weight:700">Carpenter</div>
+            <div class="small-muted" style="margin-top:6px">Repairs & customization</div>
+            <button class="btn btn-primary" data-service="Carpenter">Request Now</button>
+          </div>
+          <div class="service-card">
+            <div class="service-ico" aria-hidden="true">
+              <img src="professional_15301913.png" alt="Electrician" />
+            </div>
+            <div style="font-weight:700">Electrician</div>
+            <div class="small-muted" style="margin-top:6px">Wiring & fittings</div>
+            <button class="btn btn-primary" data-service="Electrician">Request Now</button>
+          </div>
+          <div class="service-card">
+            <div class="service-ico" aria-hidden="true">
+              <img src="painter_10750968.png" alt="Painter" />
+            </div>
+            <div style="font-weight:700">Painter</div>
+            <div class="small-muted" style="margin-top:6px">Interior & exterior</div>
+            <button class="btn btn-primary" data-service="Painter">Request Now</button>
+          </div>
+          <div class="service-card">
+            <div class="service-ico" aria-hidden="true">
+              <img src="plumber_17896813.png" alt="Plumber" />
+            </div>
+            <div style="font-weight:700">Plumber</div>
+            <div class="small-muted" style="margin-top:6px">Leak repairs & fittings </div>
+            <button class="btn btn-primary" data-service="Plumber">Request Now</button>
+          </div>
+          <div class="service-card">
+            <div class="service-ico" aria-hidden="true">
+              <img src="tool_13016197.png" alt="AC Repair" />
+            </div>
+            <div style="font-weight:700">AC Repair</div>
+            <div class="small-muted" style="margin-top:6px">Cooling & servicing</div>
+            <button class="btn btn-primary" data-service="AC Repair">Request Now</button>
+          </div>
+          <div class="service-card">
+            <div class="service-ico" aria-hidden="true">
+              <img src="mother_2219859.png" alt="Babysitter / Nanny" />
+            </div>
+            <div style="font-weight:700">Babysitter / Nanny</div>
+            <div class="small-muted" style="margin-top:6px">Child care at home</div>
+            <button class="btn btn-primary" data-service="Babysitter / Nanny">Request Now</button>
+          </div>
+          <div class="service-card">
+            <div class="service-ico" aria-hidden="true">
+              <img src="delivery_3273322.png" alt="Packers & Movers" />
+            </div>
+            <div style="font-weight:700">Packers & Movers</div>
+            <div class="small-muted" style="margin-top:6px">Shifting & relocation</div>
+            <button class="btn btn-primary" data-service="Packers & Movers">Request Now</button>
+          </div>
+          <div class="service-card">
+            <div class="service-ico" aria-hidden="true">
+              <img src="towel_3629931.png" alt="Drycleaning" />
+            </div>
+            <div style="font-weight:700">Drycleaning</div>
+            <div class="small-muted" style="margin-top:6px">Laundry & dryclean</div>
+            <button class="btn btn-primary" data-service="Drycleaning">Request Now</button>
+          </div>
+          <div class="service-card">
+            <div class="service-ico" aria-hidden="true">
+              <img src="insecticide_3186150.png" alt="Pest Control" />
+            </div>
+            <div style="font-weight:700">Pest Control</div>
+            <div class="small-muted" style="margin-top:6px">Termite & pest removal</div>
+            <button class="btn btn-primary" data-service="Pest Control">Request Now</button>
+          </div>
+        </div>
+        <button class="slider-btn slider-btn-right" aria-label="Next services" type="button">&#8594;</button>
+      </div>
+    </section>
+
+    <!-- EMERGENCY CONTACTS & QUICK LINKS -->
+    <section aria-labelledby="infoTitle">
+      <div class="section-title">
+        <h2 id="infoTitle">Emergency Contacts & Quick Links</h2>
+        <div class="small-muted">Essential numbers and downloads</div>
+      </div>
+
+      <div class="info-container">
+        <div class="emergency-contacts">
+          <div style="font-weight:700;margin-bottom:8px">Emergency Contacts</div>
+          <div class="small-muted">🚓 Security Guard (24x7): <strong>9999-XXXXXX</strong></div>
+          <div class="small-muted">🚑 Ambulance: <strong>108</strong></div>
+          <div class="small-muted">👮 Police: <strong>100</strong></div>
+          <div class="small-muted">🚒 Fire Brigade: <strong>101</strong></div>
+          <div class="small-muted">🔌 Electrician Helpline: <strong>9999-YYYYYY</strong></div>
+          <div class="small-muted">💧 Water Supply Helpline: <strong>9999-ZZZZZZ</strong></div>
+          <div class="small-muted">👩 Women's Helpline: <strong>9999-WOMEN</strong></div>
+          <div class="small-muted">👴 Senior Citizens Helpline: <strong>9999-SENIOR</strong></div>
+          <div class="small-muted">👶 Child Helpline: <strong>9999-CHILD</strong></div>
+        </div>
+
+        <div class="quick-links-container">
+          <div style="font-weight:700;margin-bottom:8px">Quick Links</div>
+          <div class="quick-links">
+            <a class="qbtn" href="#docs">Maintenance Bill</a>
+            <a class="qbtn" href="#docs">Parking Form</a>
+            <a class="qbtn" href="#contact">Complaint Box</a>
+            <a class="qbtn" href="#rwa">Contact Committee</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- DOCUMENTS -->
+    <section id="docs" aria-labelledby="docsTitle">
+      <div class="section-title">
+        <h2 id="docsTitle">Documents & Downloads</h2>
+        <a href="#docs" class="small-muted">All Documents</a>
+      </div>
+
+      <div class="documents-container">
+        <a class="qbtn" href="#" download>Maintenance Bill PDF</a>
+        <a class="qbtn" href="#" download>Parking Form</a>
+        <a class="qbtn" href="#" download>Society Rules</a>
+      </div>
+    </section>
+
+    <!-- GALLERY -->
+    <section id="gallery" aria-labelledby="galleryTitle">
+      <div class="section-title">
+        <h2 id="galleryTitle">Gallery</h2>
+        <a href="#gallery" class="small-muted">View All</a>
+      </div>
+
+      <div class="gallery">
+        <!-- Replace src with real images or WordPress media URLs -->
+        <img src="https://via.placeholder.com/400x300?text=Event+1" alt="Event 1">
+        <img src="https://via.placeholder.com/400x300?text=Event+2" alt="Event 2">
+        <img src="https://via.placeholder.com/400x300?text=Event+3" alt="Event 3">
+        <img src="https://via.placeholder.com/400x300?text=Event+4" alt="Event 4">
+        <img src="https://via.placeholder.com/400x300?text=Event+5" alt="Event 5">
+        <img src="https://via.placeholder.com/400x300?text=Event+6" alt="Event 6">
+      </div>
+    </section>
+
+    <!--Follow Us-->
+    <section id="follow" aria-labelledby="followTitle">
+      <div class="section-title">
+        <h2 id="followTitle">Follow Us & General Inquiries</h2>
+        <div class="small-muted">Stay connected with our community</div>
+      </div>
+
+      <div class="follow-container">
+        <div class="social-links">
+          <div style="font-weight:700;margin-bottom:16px;">Follow Us On Social Media</div>
+          <div class="social-icons">
+            <a href="https://facebook.com/skyhillsapartment" class="social-link" target="_blank" aria-label="Facebook">
+              <img src="https://cdn-icons-png.flaticon.com/512/124/124010.png" alt="Facebook" class="social-icon">
+              <span>Facebook</span>
+            </a>
+            <a href="https://twitter.com/skyhillsapartment" class="social-link" target="_blank" aria-label="Twitter">
+              <img src="https://cdn-icons-png.flaticon.com/512/124/124021.png" alt="Twitter" class="social-icon">
+              <span>Twitter</span>
+            </a>
+            <a href="https://instagram.com/skyhillsapartment" class="social-link" target="_blank" aria-label="Instagram">
+              <img src="https://cdn-icons-png.flaticon.com/512/174/174855.png" alt="Instagram" class="social-icon">
+              <span>Instagram</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="general-inquiries">
+          <div style="font-weight:700;margin-bottom:16px;">General Inquiries</div>
+          <div class="contact-info">
+            <div class="contact-item">
+              <img src="https://cdn-icons-png.flaticon.com/512/561/561127.png" alt="Email" class="contact-icon">
+              <div>
+                <div class="small-muted">Email us at</div>
+                <div style="font-weight:600;">rwa@skyhillsapt.com</div>
+              </div>
+            </div>
+            <div class="contact-item">
+              <img src="https://cdn-icons-png.flaticon.com/512/126/126341.png" alt="Phone" class="contact-icon">
+              <div>
+                <div class="small-muted">Call us at</div>
+                <div style="font-weight:600;">+91-98765-43210</div>
+              </div>
+            </div>
+            <div class="contact-item">
+              <img src="https://cdn-icons-png.flaticon.com/512/684/684809.png" alt="Office Hours" class="contact-icon">
+              <div>
+                <div class="small-muted">Office Hours</div>
+                <div style="font-weight:600;">Mon-Sat: 9:00 AM - 6:00 PM</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- CONTACT -->
+    <section id="contact" aria-labelledby="contactTitle">
+      <div class="section-title">
+        <h2 id="contactTitle">Contact & Help Desk</h2>
+        <div class="small-muted">Office hours: Mon–Sat, 10:00–17:00</div>
+      </div>
+
+      <div class="contact-container">
+        <div class="office-info">
+          <div style="font-weight:700">Society Office</div>
+          <div class="small-muted" style="margin-top:6px">Block A, Ground Floor, Skyhills Apartment</div>
+          <div style="margin-top:12px"><strong>Phone:</strong> 9999-XXXXXX</div>
+          <div style="margin-top:6px"><strong>Email:</strong> office@example.com</div>
+        </div>
+
+        <form class="contact-form" onsubmit="event.preventDefault(); alert('Message sent.');">
+          <div style="font-weight:700;margin-bottom:10px">Send a message</div>
+          <input type="text" placeholder="Your name" required style="margin-bottom:8px">
+          <input type="email" placeholder="Your email" required style="margin-bottom:8px">
+          <textarea rows="3" placeholder="Message" required style="margin-bottom:8px"></textarea>
+          <button class="btn btn-primary" type="submit">Send</button>
+        </form>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="container" role="contentinfo">
+    <div class="footer-content">
+      <div>© <strong>2025 ResiReach</strong> — Skyhills Apartment. All rights reserved.</div>
+      <div class="small-muted">Designed for community convenience • Powered by ResiReach</div>
+    </div>
+  </footer>
+
+
+  <script src="script.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+  <script>
+    // Initialize Typed.js for auto-typing effect
+    var typed = new Typed('.auto-type', {
+      strings: ['Resireach','Skyhills Apartment', 'Your Community Hub', 'Trusted Home Services'],
+      typeSpeed: 70,
+      backSpeed: 50,
+      loop: true
+    });
+  </script>
+
+</body>
+
+</html>

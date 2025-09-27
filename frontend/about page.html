@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>About Society — Skyhills Apartment | ResiReach</title>
+  <meta name="description"
+    content="Learn about Skyhills Apartment's history, features, amenities, and community values. Discover why we're the premier residential community in the area." />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    /* Base styles from main page */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      line-height: 1.6;
+      color: #333;
+      background-color: #fff;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* Top Navigation */
+    .topbar {
+      background-color: #fff;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      min-height: 40px;
+      display: flex;
+      align-items: center;
+      width: 100%;
+    }
+
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 0;
+      min-height: 25px;
+    }
+
+
+    .logo-img {
+      height: 40px;
+    }
+
+
+    .logo {
+      margin-left: -30px !important;
+      margin-right: 100px;
+      display: flex;
+      align-items: center;
+    }
+
+    .container.nav {
+      padding-left: 0 !important;
+      display: flex;
+      align-items: center;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      align-items: center;
+      margin-left: 45px;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: #333;
+      font-weight: 500;
+      transition: color 0.3s;
+      padding-left: 8px;
+      padding-right: 8px;
+    }
+
+    /* Reduce margin for Home link specifically */
+    .nav-links a[href="index.html"] {
+      padding-left: 2px;
+      padding-right: 2px;
+      margin-right: 0;
+    }
+
+    .cta {
+      background-color: #fc8937;
+      color: white !important;
+      padding: 8px 16px;
+      border-radius: 4px;
+      font-weight: 600 !important;
+      font-size: 1rem;
+      box-shadow: 0 2px 8px rgba(74, 144, 226, 0.08);
+      transition: background 0.2s;
+      border: none;
+      outline: none;
+      cursor: pointer;
+    }
+
+    .cta:hover {
+      background-color: #357abd;
+    }
+
+    .hamburger {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 24px;
+      cursor: pointer;
+    }
+
+    /* Typography */
+    h1,
+    h2,
+    h3 {
+      margin-bottom: 16px;
+      color: #1a1a1a;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+    }
+
+    h2 {
+      font-size: 2rem;
+      font-weight: 600;
+    }
+
+    h3 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-top: 30px;
+    }
+
+    p {
+      margin-bottom: 16px;
+    }
+
+    .small-muted {
+      font-size: 0.875rem;
+      color: #666;
+    }
+
+    /* About Page Specific Styles */
+    .about-hero {
+      padding: 60px 0;
+      background: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)), url('https://via.placeholder.com/1200x400?text=Skyhills+Apartment') center/cover no-repeat;
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .about-hero h1 {
+      margin-bottom: 16px;
+    }
+
+    .about-hero p {
+      max-width: 700px;
+      margin: 0 auto 24px;
+      font-size: 1.1rem;
+    }
+
+    .breadcrumb {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 30px;
+    }
+
+    .breadcrumb a {
+      color: #4a90e2;
+      text-decoration: none;
+    }
+
+    .breadcrumb span {
+      margin: 0 8px;
+      color: #999;
+    }
+
+    .about-section {
+      margin-bottom: 60px;
+    }
+
+    .section-title {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 30px;
+      border-bottom: 2px solid #4a90e2;
+      padding-bottom: 10px;
+    }
+
+    .about-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      margin-bottom: 40px;
+    }
+
+    .about-image {
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .about-image img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .timeline {
+      position: relative;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .timeline::after {
+      content: '';
+      position: absolute;
+      width: 6px;
+      background-color: #4a90e2;
+      top: 0;
+      bottom: 0;
+      left: 50%;
+      margin-left: -3px;
+    }
+
+    .timeline-item {
+      padding: 10px 40px;
+      position: relative;
+      width: 50%;
+      box-sizing: border-box;
+    }
+
+    .timeline-item:nth-child(odd) {
+      left: 0;
+    }
+
+    .timeline-item:nth-child(even) {
+      left: 50%;
+    }
+
+    .timeline-item::after {
+      content: '';
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background-color: white;
+      border: 4px solid #4a90e2;
+      border-radius: 50%;
+      top: 15px;
+      z-index: 1;
+    }
+
+    .timeline-item:nth-child(odd)::after {
+      right: -12px;
+    }
+
+    .timeline-item:nth-child(even)::after {
+      left: -12px;
+    }
+
+    .timeline-content {
+      padding: 20px;
+      background-color: #f8f9fa;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .timeline-date {
+      font-weight: 700;
+      color: #4a90e2;
+      margin-bottom: 5px;
+    }
+
+    /* Facilities Grid */
+    .facilities-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 24px;
+      margin-top: 30px;
+    }
+
+    .facility-card {
+      background-color: #f8f9fa;
+      border-radius: 8px;
+      padding: 20px;
+      text-align: center;
+      transition: transform 0.3s, box-shadow 0.3s;
+      position: relative;
+      overflow: hidden;
+      min-height: 220px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+  color: #ffffff;
+    }
+
+    .facility-card h3,
+    .facility-card .facility-title {
+      color: #ffffff;
+    }
+
+    .facility-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-size: cover;
+      background-position: center;
+  opacity: 0.5;
+      z-index: 0;
+    }
+
+    .facility-card>* {
+      position: relative;
+      z-index: 1;
+    }
+
+    .facility-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Background images for each facility */
+    .facility-card.swimming::before {
+      background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTM3SoUhOVt_ig8NIq4OTywtryMH1Nl-X5rjw&s');
+    }
+
+    .facility-card.fitness::before {
+      background-image: url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80');
+    }
+
+    .facility-card.play-area::before {
+      background-image: url('https://media.istockphoto.com/id/473313240/photo/children-playing-in-the-park-at-playground-and-communicating.jpg?s=612x612&w=0&k=20&c=eMpRprDUvFC35nYizsBKlUPiIU9aDt8v9bKzu-ZQagI=');
+    }
+
+    .facility-card.gardens::before {
+      background-image: url('https://media.istockphoto.com/id/1347784849/photo/scenic-view-of-a-beautiful-landscape-garden-with-a-green-mowed-lawn.jpg?s=612x612&w=0&k=20&c=VU6cE_762lTNwqFeuc1A-JFksy6HcXM35Xq3ox3-Az0=');
+    }
+
+    .facility-card.hall::before {
+      background-image: url('https://images.unsplash.com/photo-1519167758481-83f550bb49b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80');
+    }
+
+    .facility-card.sports::before {
+      background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTi3P1YqfnQ2aR5O8yHRRchvJe4L4Ayy3WMAQ&s');
+    }
+
+    .facility-card.parking::before {
+      background-image: url('https://images.unsplash.com/photo-1621929747188-0b4dc28498d2?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8cGFya2luZ3xlbnwwfHwwfHx8MA%3D%3D');
+    }
+
+    .facility-card.store::before {
+      background-image: url('https://images.unsplash.com/photo-1641440616173-7241e6fe6be9?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Y29udmVuaWVuY2UlMjBzdG9yZXxlbnwwfHwwfHx8MA%3D%3D');
+    }
+
+    .facility-icon {
+      font-size: 2.2rem;
+      margin-bottom: 6px;
+    }
+
+    /* Stats Section */
+    .stats-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      text-align: center;
+      margin: 40px 0;
+    }
+
+    .stat-item {
+      padding: 20px;
+    }
+
+    .stat-number {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: #4a90e2;
+      margin-bottom: 5px;
+    }
+
+    /* Values Section */
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 24px;
+      margin-top: 30px;
+    }
+
+    .value-card {
+      background-color: #f8f9fa;
+      border-radius: 8px;
+      padding: 24px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      min-height: 220px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+  color: #ffffff;
+    }
+
+    .value-card h3,
+    .value-card .value-title {
+      color: #ffffff;
+    }
+
+    .value-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-size: cover;
+      background-position: center;
+  opacity: 0.5;
+      z-index: 0;
+    }
+
+    .value-card>* {
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Background images for each value */
+    .value-card.community::before {
+      background-image: url('https://images.pexels.com/photos/325521/pexels-photo-325521.jpeg?cs=srgb&dl=pexels-leah-newhouse-50725-325521.jpg&fm=jpg');
+    }
+
+    .value-card.sustainability::before {
+      background-image: url('https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80');
+    }
+
+    .value-card.security::before {
+      background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTdt7buvAAjzZCfuEZz1RmPKAtgktLXYxZOYg&s');
+    }
+
+    .value-card.excellence::before {
+      background-image: url('https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80');
+    }
+
+    .value-icon {
+      font-size: 1.7rem;
+      margin-bottom: 6px;
+      color: #4a90e2;
+    }
+
+    /* Footer */
+    footer {
+      background-color: #1a1a1a;
+      color: #fff;
+      padding: 40px 0;
+      margin-top: 60px;
+    }
+
+    .footer-content {
+      text-align: center;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 900px) {
+      .about-content {
+        grid-template-columns: 1fr;
+      }
+
+      .timeline::after {
+        left: 31px;
+      }
+
+      .timeline-item {
+        width: 100%;
+        padding-left: 70px;
+        padding-right: 25px;
+      }
+
+      .timeline-item:nth-child(even) {
+        left: 0;
+      }
+
+      .timeline-item:nth-child(odd)::after,
+      .timeline-item:nth-child(even)::after {
+        left: 18px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 70px;
+        left: 0;
+        right: 0;
+        background-color: #fff;
+        padding: 20px;
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      .nav-links.active {
+        display: flex;
+      }
+
+      .hamburger {
+        display: block;
+      }
+
+      h1 {
+        font-size: 2rem;
+      }
+
+      h2 {
+        font-size: 1.75rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- TOP NAV -->
+  <div class="topbar" role="banner">
+    <div class="container nav" role="navigation" aria-label="Main navigation">
+      <div class="logo">
+        <img src="image.png" alt="Skyhills Apartment Logo" class="logo-img" />
+      </div>
+      <nav class="nav-links" id="navLinks">
+        <a href="index.html">Home</a>
+        <a href="about page.html">About Society</a>
+        <a href="comittee.html">RWA Members</a>
+        <a href="index.html#notices">Notices</a>
+        <a href="index.html#events">Events</a>
+        <a href="services.html">Services</a>
+        <a href="#docs">Service Provider</a>
+        <a href="#contact">Contact</a>
+        <a class="cta" href="login.html" id="requestBtnTop">Resident Login</a>
+      </nav>
+      <button class="hamburger" id="hamburger" aria-label="Open menu">☰</button>
+    </div>
+  </div>
+
+  <main class="container">
+    <!-- Breadcrumb -->
+    <div class="breadcrumb">
+      <a href="index.html">Home</a>
+      <span>/</span>
+      <span>About Society</span>
+    </div>
+
+    <!-- HERO SECTION -->
+    <section class="about-hero">
+      <h1>About Skyhills Apartment</h1>
+      <p>Discover the story of our community, our values, and the exceptional living experience we offer to our
+        residents.</p>
+    </section>
+
+    <!-- INTRODUCTION -->
+    <section class="about-section">
+      <div class="section-title">
+        <h2>Our Story</h2>
+      </div>
+
+      <div class="about-content">
+        <div>
+          <p>Skyhills Apartment was established in 2008 with a vision to create more than just a residential complex—we
+            aimed to build a thriving community where families could grow, connect, and flourish together.</p>
+          <p>Nestled in a prime location with easy access to city amenities while maintaining a serene environment,
+            Skyhills has become one of the most sought-after residential communities in the region.</p>
+          <p>Over the years, we've continually evolved, adding new amenities and upgrading facilities to ensure our
+            residents enjoy the highest quality of life possible.</p>
+        </div>
+        <div class="about-image">
+          <img src="aerial view.png" alt="Aerial view of Skyhills Apartment complex">
+        </div>
+      </div>
+    </section>
+
+    <!-- TIMELINE -->
+    <section class="about-section">
+      <div class="section-title">
+        <h2>Our Journey</h2>
+      </div>
+
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-content">
+            <div class="timeline-date">2005</div>
+            <h3>Concept & Planning</h3>
+            <p>Initial concept development and planning for a premium residential community began.</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-content">
+            <div class="timeline-date">2007</div>
+            <h3>Construction Begins</h3>
+            <p>Groundbreaking ceremony and commencement of construction on the 10-acre property.</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-content">
+            <div class="timeline-date">2008</div>
+            <h3>First Residents Move In</h3>
+            <p>Phase 1 completed and the first families moved into Skyhills Apartment.</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-content">
+            <div class="timeline-date">2010</div>
+            <h3>Community Center Inauguration</h3>
+            <p>State-of-the-art community center with swimming pool and gym facilities opened.</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-content">
+            <div class="timeline-date">2015</div>
+            <h3>Green Initiatives Launch</h3>
+            <p>Implemented rainwater harvesting and solar power systems, becoming an eco-friendly community.</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-content">
+            <div class="timeline-date">2020</div>
+            <h3>Smart Community Upgrade</h3>
+            <p>Implemented smart security systems and high-speed fiber internet throughout the complex.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FACILITIES -->
+    <section class="about-section">
+      <div class="section-title">
+        <h2>Our Facilities</h2>
+      </div>
+
+      <p>Skyhills Apartment offers an extensive range of amenities designed to enhance your lifestyle and provide
+        convenience at your doorstep.</p>
+
+      <div class="facilities-grid">
+        <div class="facility-card swimming">
+          <h3><strong>Swimming Pool</strong></h3>
+          <p>Olympic-sized pool with separate areas for adults and children</p>
+        </div>
+
+        <div class="facility-card fitness">
+          <h3><strong>Fitness Center</strong></h3>
+          <p>Fully-equipped gym with modern equipment and trained instructors</p>
+        </div>
+
+        <div class="facility-card play-area">
+          <h3><strong>Children's Play Area</strong></h3>
+          <p>Safe, modern play equipment with dedicated supervisors</p>
+        </div>
+
+        <div class="facility-card gardens">
+          <h3><strong>Landscaped Gardens</strong></h3>
+          <p>Beautifully maintained gardens with walking paths and seating areas</p>
+        </div>
+
+        <div class="facility-card hall">
+          <h3><strong>Community Hall</strong></h3>
+          <p>Spacious venue for events and gatherings with catering facilities</p>
+        </div>
+
+        <div class="facility-card sports">
+          <h3><strong>Sports Facilities</strong></h3>
+          <p>Basketball court, badminton courts, and table tennis facilities</p>
+        </div>
+
+        <div class="facility-card parking">
+          <h3><strong>Ample Parking</strong></h3>
+          <p>Designated parking areas with 24/7 security surveillance</p>
+        </div>
+
+        <div class="facility-card store">
+          <h3><strong>Convenience Store</strong></h3>
+          <p>In-house store for daily necessities and emergency supplies</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- STATISTICS -->
+    <section class="about-section">
+      <div class="section-title">
+        <h2>By The Numbers</h2>
+      </div>
+
+      <div class="stats-container">
+        <div class="stat-item">
+          <div class="stat-number">17</div>
+          <div class="stat-label">Years of Excellence</div>
+        </div>
+
+        <div class="stat-item">
+          <div class="stat-number">500+</div>
+          <div class="stat-label">Happy Families</div>
+        </div>
+
+        <div class="stat-item">
+          <div class="stat-number">10</div>
+          <div class="stat-label">Acres of Land</div>
+        </div>
+
+        <div class="stat-item">
+          <div class="stat-number">24/7</div>
+          <div class="stat-label">Security</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- VALUES -->
+    <section class="about-section">
+      <div class="section-title">
+        <h2>Our Values</h2>
+      </div>
+
+      <div class="values-grid">
+        <div class="value-card community">
+          <h3><strong>Community</strong></h3>
+          <p>We foster a strong sense of belonging and togetherness among residents</p>
+        </div>
+
+        <div class="value-card sustainability">
+          <h3><strong>Sustainability</strong></h3>
+          <p>We're committed to environmentally responsible practices and green living</p>
+        </div>
+
+        <div class="value-card security">
+          <h3><strong>Security</strong></h3>
+          <p>Resident safety is our top priority with round-the-clock security measures</p>
+        </div>
+
+        <div class="value-card excellence">
+          <h3><strong>Excellence</strong></h3>
+          <p>We continuously strive to improve our facilities and services</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- AWARDS & RECOGNITION -->
+    <section class="about-section">
+      <div class="section-title">
+        <h2>Awards & Recognition</h2>
+      </div>
+
+      <ul>
+        <li>Green Building Certification (2016)</li>
+        <li>Best Residential Complex Award - City Category (2018)</li>
+        <li>Safety Excellence Award from Local Police Department (2020)</li>
+        <li>Community Engagement Award (2022)</li>
+      </ul>
+    </section>
+
+    <!-- FUTURE PLANS -->
+    <section class="about-section">
+      <div class="section-title">
+        <h2>Future Developments</h2>
+      </div>
+
+      <p>We're constantly working to enhance our community. Upcoming projects include:</p>
+
+      <ul>
+        <li>Expansion of the children's play area with new equipment</li>
+        <li>Installation of electric vehicle charging stations</li>
+        <li>Development of a rooftop garden with organic farming patches</li>
+        <li>Upgrade to smart home integration capabilities</li>
+      </ul>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="container" role="contentinfo">
+    <div class="footer-content">
+      <div>© <strong>2025 ResiReach</strong> — Skyhills Apartment. All rights reserved.</div>
+      <div class="small-muted">Designed for community convenience • Powered by ResiReach</div>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile menu toggle
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('navLinks');
+
+    hamburger.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+    });
+  </script>
+</body>
+
+</html>
