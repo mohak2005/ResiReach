@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Service Marked Completed - ResiReach</title>
+</head>
+<body style="margin: 0; padding: 0; font-family: 'Segoe UI', Arial, sans-serif; background-color: #f7f8fb; color: #0f1724; line-height: 1.6;">
+  <div style="max-width: 600px; margin: 40px auto; background-color: #ffffff; border-radius: 12px; overflow: hidden; box-shadow: 0 6px 18px rgba(0,0,0,0.08);">
+    <!-- Header -->
+    <div style="background: #0f1724; color: white; text-align: center; padding: 30px 20px;">
+      <div style="font-size: 28px; font-weight: 800; margin-bottom: 8px; color: white;">ResiReach</div>
+      <div style="font-size: 14px; color: #cccccc; font-weight: 500;">Skyhills Apartment Service Provider Network</div>
+    </div>
+
+    <!-- Content -->
+    <div style="padding: 40px;">
+      <!-- Success Icon -->
+      <div style="text-align: center; margin-bottom: 24px;">
+        <div style="background: #0f8a5f; color: white; width: 80px; height: 80px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 36px; font-weight: bold; margin-bottom: 16px;">
+          ✓
+        </div>
+      </div>
+
+      <div style="font-size: 24px; font-weight: 700; margin-bottom: 20px; color: #0f1724; text-align: center;">Service Marked as Completed!</div>
+
+      <p style="margin: 0 0 20px 0; text-align: center;">Hello <strong>{{ provider.full_name }}</strong>,</p>
+
+      <p style="margin: 0 0 20px 0; text-align: center;">The resident has marked the service for the following request as <strong>COMPLETED</strong>:</p>
+
+      <!-- Service Category Highlight -->
+      <div style="background: #f0fdf4; padding: 16px; border-radius: 8px; margin: 24px 0; border-left: 4px solid #0f8a5f; text-align: center;">
+        <p style="margin: 0; font-weight: 700; color: #0f1724; font-size: 18px;">{{ service_request.category.name }}</p>
+      </div>
+
+      <!-- Request Details -->
+      <div style="background: #f8f9fa; padding: 24px; border-radius: 8px; margin: 24px 0; border-left: 4px solid #0f1724;">
+        <div style="font-weight: 700; margin-bottom: 20px; color: #0f1724; font-size: 18px;">📋 Service Details</div>
+
+        <div style="display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid #e5e7eb;">
+          <span style="color: #6b7280; font-weight: 600; font-size: 14px;">Request ID:</span>
+          <span style="color: #0f1724; font-weight: 700; font-size: 15px;">#{{ service_request.pk }}</span>
+        </div>
+
+        <div style="display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid #e5e7eb;">
+          <span style="color: #6b7280; font-weight: 600; font-size: 14px;">Resident:</span>
+          <span style="color: #0f1724; font-weight: 700; font-size: 15px;">{{ resident.first_name }} {{ resident.last_name }}</span>
+        </div>
+
+        <div style="display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid #e5e7eb;">
+          <span style="color: #6b7280; font-weight: 600; font-size: 14px;">Apartment:</span>
+          <span style="color: #0f1724; font-weight: 700; font-size: 15px;">{{ service_request.apartment_details }}</span>
+        </div>
+
+        <div style="display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid #e5e7eb;">
+          <span style="color: #6b7280; font-weight: 600; font-size: 14px;">Status:</span>
+          <span style="color: #0f8a5f; font-weight: 700; font-size: 15px; background: #f0fdf4; padding: 4px 12px; border-radius: 20px;">COMPLETED</span>
+        </div>
+      </div>
+
+      <!-- Thank You Message -->
+      <div style="background: #f0f9ff; padding: 20px; border-radius: 8px; margin: 24px 0; border-left: 4px solid #0ea5e9;">
+        <div style="font-weight: 700; margin-bottom: 12px; color: #0f1724;">🎉 Service Successfully Completed</div>
+        <p style="margin: 0; color: #6b7280; font-size: 14px;">
+          Thank you for providing quality service to our community. Your professionalism is appreciated by both the resident and our management team.
+        </p>
+      </div>
+
+      <!-- Impact on Your Profile -->
+      <div style="margin: 24px 0;">
+        <div style="font-size: 18px; font-weight: 700; margin-bottom: 16px; color: #0f1724;">Positive Impact:</div>
+
+        <div style="display: flex; align-items: flex-start; margin-bottom: 16px; padding: 12px; background: #f8f9fa; border-radius: 8px;">
+          <div style="background: #0f8a5f; color: white; width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; margin-right: 12px;">
+            ⭐
+          </div>
+          <div style="flex: 1; color: #0f1724; font-size: 14px;">
+            <strong>Enhanced Reputation</strong><br>
+            Completed services improve your provider rating and visibility
+          </div>
+        </div>
+
+        <div style="display: flex; align-items: flex-start; margin-bottom: 16px; padding: 12px; background: #f8f9fa; border-radius: 8px;">
+          <div style="background: #0f8a5f; color: white; width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; margin-right: 12px;">
+            🔄
+          </div>
+          <div style="flex: 1; color: #0f1724; font-size: 14px;">
+            <strong>Increased Opportunities</strong><br>
+            High completion rates lead to more service requests
+          </div>
+        </div>
+
+        <div style="display: flex; align-items: flex-start; margin-bottom: 16px; padding: 12px; background: #f8f9fa; border-radius: 8px;">
+          <div style="background: #0f8a5f; color: white; width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; margin-right: 12px;">
+            💼
+          </div>
+          <div style="flex: 1; color: #0f1724; font-size: 14px;">
+            <strong>Professional Growth</strong><br>
+            Each completed service builds your track record in our community
+          </div>
+        </div>
+      </div>
+
+      <!-- Dashboard Button -->
+      <div style="text-align: center; margin: 32px 0;">
+        <a href="{{ request.build_absolute_uri|default:'#' }}" style="display: inline-block; padding: 16px 40px; background: #0f8a5f; color: white; text-decoration: none; border-radius: 8px; font-weight: 700; font-size: 16px; text-align: center; box-shadow: 0 4px 12px rgba(15,138,95,0.3);">
+          📊 View Completed Service
+        </a>
+      </div>
+
+      <!-- Future Opportunities -->
+      <div style="background: #fef7e0; padding: 16px; border-radius: 8px; margin: 24px 0; border-left: 4px solid #ff7a18;">
+        <p style="margin: 0; font-weight: 700; color: #0f1724;">🚀 Ready for Your Next Service?</p>
+        <p style="margin: 8px 0 0 0; color: #6b7280; font-size: 14px;">
+          Keep an eye on your dashboard for new service requests. Your proven track record makes you a preferred provider for our residents.
+        </p>
+      </div>
+
+      <!-- Closing -->
+      <div style="margin-top: 24px; padding-top: 20px; border-top: 1px solid #e5e7eb; text-align: center;">
+        <p style="margin: 0; font-weight: 600; color: #0f1724;">Thank you for completing the service.</p>
+        <p style="margin: 8px 0 0 0; font-weight: 500; color: #6b7280; font-size: 14px;">ResiReach System</p>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div style="background: #f8f9fa; text-align: center; padding: 30px 20px; font-size: 13px; color: #6b7280; border-top: 1px solid #e5e7eb;">
+      <div style="margin-bottom: 8px;">
+        <strong>ResiReach - Skyhills Apartment Service Provider Network</strong>
+      </div>
+      <p style="margin: 8px 0 0 0; font-size: 12px;">
+        Connecting trusted service professionals with our community
+      </p>
+      <p style="margin: 16px 0 0 0; font-size: 12px; color: #9ca3af;">
+        © 2025 ResiReach. All rights reserved.
+      </p>
+    </div>
+  </div>
+</body>
+</html>

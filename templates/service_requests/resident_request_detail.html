@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Request #{{ sr.pk }} Details | ResiReach</title>
+  <style>
+    :root {
+      --bg: #f7f8fb;
+      --card: #ffffff;
+      --brand: #0f1724;
+      --accent: #ff7a18;
+      --muted: #6b7280;
+      --success: #0f8a5f;
+      --radius: 12px;
+      --max-width: 900px;
+      --gap: 20px;
+      --shadow: 0 6px 18px rgba(15, 23, 36, 0.04);
+      font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--brand);
+      line-height: 1.45;
+      min-height: 100vh;
+      padding: 0;
+    }
+
+    .container {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 40px 28px;
+    }
+
+    .request-header {
+      text-align: center;
+      margin-bottom: 40px;
+      padding-bottom: 20px;
+      border-bottom: 2px solid rgba(15, 23, 36, 0.1);
+    }
+
+    .request-header h1 {
+      font-size: 32px;
+      color: var(--brand);
+      margin-bottom: 16px;
+    }
+
+    .request-id {
+      background: var(--accent);
+      color: white;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 14px;
+      font-weight: 600;
+      display: inline-block;
+      margin-bottom: 16px;
+    }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+      margin-bottom: 40px;
+    }
+
+    .info-card {
+      background: var(--card);
+      padding: 24px;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .info-card h3 {
+      color: var(--brand);
+      margin-bottom: 16px;
+      font-size: 18px;
+      border-bottom: 2px solid var(--accent);
+      padding-bottom: 8px;
+    }
+
+    .info-item {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 12px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid rgba(15, 23, 36, 0.04);
+    }
+
+    .info-label {
+      font-weight: 600;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .info-value {
+      font-weight: 600;
+      color: var(--brand);
+    }
+
+    .status-section {
+      background: var(--card);
+      padding: 24px;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      margin-bottom: 40px;
+      text-align: center;
+    }
+
+    .status-badge {
+      display: inline-block;
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-size: 14px;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    .status-pending {
+      background: rgba(255, 165, 0, 0.1);
+      color: orange;
+    }
+
+    .status-provider-responses {
+      background: rgba(0, 0, 255, 0.1);
+      color: blue;
+    }
+
+    .status-confirmed {
+      background: rgba(0, 128, 0, 0.1);
+      color: green;
+    }
+
+    .status-completed-provider {
+      background: rgba(0, 100, 0, 0.1);
+      color: darkgreen;
+    }
+
+    .status-completed-resident {
+      background: rgba(128, 0, 128, 0.1);
+      color: purple;
+    }
+
+    .responses-section {
+      background: var(--card);
+      padding: 24px;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      margin-bottom: 40px;
+    }
+
+    .responses-section h3 {
+      color: var(--brand);
+      margin-bottom: 20px;
+      font-size: 20px;
+      border-bottom: 2px solid var(--accent);
+      padding-bottom: 8px;
+    }
+
+    .response-card {
+      background: rgba(15, 23, 36, 0.02);
+      padding: 20px;
+      border-radius: 8px;
+      margin-bottom: 16px;
+      border-left: 4px solid var(--accent);
+      transition: all 0.3s ease;
+    }
+
+    .response-card:hover {
+      transform: translateX(4px);
+      box-shadow: 0 4px 12px rgba(15, 23, 36, 0.08);
+    }
+
+    .provider-header {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      margin-bottom: 12px;
+      gap: 8px;
+    }
+
+    .provider-name {
+      font-weight: 700;
+      color: var(--brand);
+      font-size: 16px;
+    }
+
+    .provider-category {
+      background: rgba(255, 122, 24, 0.1);
+      color: var(--accent);
+      padding: 4px 8px;
+      border-radius: 12px;
+      font-size: 12px;
+      font-weight: 600;
+      justify-self: end;
+    }
+
+    .response-details {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .response-item {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .response-label {
+      font-size: 12px;
+      color: var(--muted);
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .response-value {
+      font-size: 14px;
+      color: var(--brand);
+      font-weight: 500;
+    }
+
+    .action-section {
+      text-align: center;
+      margin-top: 40px;
+    }
+
+    .action-buttons {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 12px 24px;
+      border-radius: 8px;
+      border: none;
+      font-weight: 700;
+      cursor: pointer;
+      font-size: 14px;
+      transition: all 0.2s;
+      text-decoration: none;
+      color: white;
+      display: inline-block;
+    }
+
+    .btn-success {
+      background: var(--success);
+    }
+
+    .btn-warning {
+      background: orange;
+    }
+
+    .btn-completed {
+      background: green;
+    }
+
+    .btn-feedback {
+      background: purple;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    .empty-state {
+      text-align: center;
+      padding: 40px 20px;
+      color: var(--muted);
+    }
+
+    .empty-state-icon {
+      font-size: 48px;
+      margin-bottom: 16px;
+      opacity: 0.5;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+
+    <div class="request-header">
+      <div class="request-id">Request #{{ sr.pk }}</div>
+      <h1>Service Request Details</h1>
+    </div>
+
+    <!-- Request Info -->
+    <div class="info-grid">
+      <div class="info-card">
+        <h3>Service Information</h3>
+        <div class="info-item">
+          <span class="info-label">Service Category</span>
+          <span class="info-value">{{ sr.category.name }}</span>
+        </div>
+        <div class="info-item">
+          <span class="info-label">Preferred Date</span>
+          <span class="info-value">{{ sr.preferred_date }}</span>
+        </div>
+        <div class="info-item">
+          <span class="info-label">Preferred Time</span>
+          <span class="info-value">{{ sr.preferred_time }}</span>
+        </div>
+      </div>
+
+      <div class="info-card">
+        <h3>Resident Information</h3>
+        <div class="info-item">
+          <span class="info-label">Resident Name</span>
+          <span class="info-value">{{ sr.first_name }} {{ sr.last_name }}</span>
+        </div>
+        <div class="info-item">
+          <span class="info-label">Apartment Details</span>
+          <span class="info-value">{{ sr.apartment_details }}</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Status -->
+    <div class="status-section">
+      <h3>Current Status</h3>
+
+      {% if sr.status == "pending" %}
+      <div class="status-badge status-pending">Pending</div>
+      {% elif sr.status == "provider_responses" %}
+      <div class="status-badge status-provider-responses">Providers Responded</div>
+      {% elif sr.status == "confirmed" %}
+      <div class="status-badge status-confirmed">Provider Confirmed</div>
+      {% elif sr.status == "completed_by_provider" %}
+      <div class="status-badge status-completed-provider">Work Completed</div>
+      {% elif sr.status == "completed_by_resident" %}
+      <div class="status-badge status-completed-resident">Closed</div>
+      {% endif %}
+    </div>
+
+    <!-- Provider Responses -->
+    <div class="responses-section">
+      <h3>Provider Responses</h3>
+
+      {% for resp in responses %}
+      <div class="response-card">
+
+        <div class="provider-header">
+          <div class="provider-name">{{ resp.provider.full_name }}</div>
+          <div class="provider-name">📞 {{ resp.provider.mobile }}</div>
+          {% if resp.provider.alternate_mobile %}
+          <div class="provider-name">📞 {{ resp.provider.alternate_mobile }}</div>
+          {% endif %}
+          <div class="provider-category">{{ resp.provider.service_category }}</div>
+        </div>
+
+        <div class="response-details">
+
+          <div class="response-item">
+            <span class="response-label">Action</span>
+            <span class="response-value">
+              {% if resp.action == "accept" %} ✅ Accept Request
+              {% elif resp.action == "reject" %} ❌ Reject Request
+              {% elif resp.action == "propose" %} 🕐 Propose New Time
+              {% else %} {{ resp.action|title }} {% endif %}
+            </span>
+          </div>
+
+          {% if resp.message %}
+          <div class="response-item">
+            <span class="response-label">Message</span>
+            <span class="response-value">{{ resp.message }}</span>
+          </div>
+          {% endif %}
+
+          {% if resp.proposed_date %}
+          <div class="response-item">
+            <span class="response-label">Proposed Date</span>
+            <span class="response-value">{{ resp.proposed_date }}</span>
+          </div>
+          {% endif %}
+
+          {% if resp.proposed_time %}
+          <div class="response-item">
+            <span class="response-label">Proposed Time</span>
+            <span class="response-value">{{ resp.proposed_time }}</span>
+          </div>
+          {% endif %}
+        </div>
+
+        {% if sr.status == "provider_responses" and not sr.confirmed_provider %}
+        <div style="text-align:center; margin-top:16px;">
+          <a href="{% url 'service_requests:resident_select_provider' sr.pk resp.pk %}"
+             class="btn btn-success"
+             onclick="return confirmProviderSelect();">
+            Select This Provider
+          </a>
+        </div>
+        {% endif %}
+
+      </div>
+
+      {% empty %}
+      <div class="empty-state">
+        <div class="empty-state-icon">👥</div>
+        <h3>No Responses Yet</h3>
+        <p>No providers have responded yet.</p>
+      </div>
+      {% endfor %}
+    </div>
+
+    <!-- Action Buttons -->
+    <div class="action-section">
+      <div class="action-buttons">
+
+        {% if sr.status == "confirmed" %}
+        <a href="{% url 'service_requests:resident_accept_completion' sr.pk %}" class="btn btn-warning">
+          🛠️ Work Completed?
+        </a>
+        {% endif %}
+
+        {% if sr.status == "completed_by_provider" %}
+        <a href="{% url 'service_requests:resident_accept_completion' sr.pk %}" class="btn btn-completed">
+          ✅ Accept Completion
+        </a>
+        {% endif %}
+
+        {% if sr.status == "completed_by_resident" %}
+        <a href="{% url 'service_requests:submit_feedback' sr.pk %}" class="btn btn-feedback">
+          💬 Give Feedback
+        </a>
+        {% endif %}
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Confirmation Popup -->
+  <script>
+    function confirmProviderSelect() {
+      return confirm(
+        "⚠️ Once you select a provider, you cannot change it later.\n\nDo you want to continue?"
+      );
+    }
+  </script>
+
+</body>
+
+</html>

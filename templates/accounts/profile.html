@@ -1,0 +1,397 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resident Profile | ResiReach</title>
+    <style>
+        :root {
+            --bg: #f7f8fb;
+            --card: #ffffff;
+            --brand: #0f1724; /* navy */
+            --accent: #ff7a18; /* warm orange */
+            --muted: #6b7280;
+            --success: #0f8a5f;
+            --radius: 12px;
+            --max-width: 500px;
+            --shadow: 0 6px 18px rgba(15,23,36,0.04);
+            font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--brand);
+            line-height: 1.45;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .profile-container {
+            background: var(--card);
+            width: 100%;
+            max-width: var(--max-width);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 40px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Header Section */
+        .profile-header {
+            text-align: center;
+            margin-bottom: 32px;
+            padding-bottom: 24px;
+            border-bottom: 2px solid rgba(15,23,36,0.1);
+        }
+
+        .profile-photo {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 4px solid var(--accent);
+            object-fit: cover;
+            margin: 0 auto 16px;
+            display: block;
+            box-shadow: 0 4px 12px rgba(255,122,24,0.2);
+        }
+
+        .profile-name {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--brand);
+            margin-bottom: 8px;
+        }
+
+        .profile-role {
+            color: var(--muted);
+            font-size: 16px;
+            font-weight: 500;
+        }
+
+        .resident-badge {
+            background: rgba(255,122,24,0.1);
+            color: var(--accent);
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            display: inline-block;
+            margin-top: 8px;
+        }
+
+        /* Info Section */
+        .info-section {
+            margin-bottom: 32px;
+        }
+
+        .section-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--brand);
+            margin-bottom: 20px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid var(--accent);
+        }
+
+        .info-grid {
+            display: grid;
+            gap: 16px;
+        }
+
+        .info-item {
+            background: rgba(15,23,36,0.02);
+            padding: 16px;
+            border-radius: 8px;
+            border-left: 4px solid var(--accent);
+            transition: all 0.3s ease;
+        }
+
+        .info-item:hover {
+            transform: translateX(4px);
+            background: rgba(255,122,24,0.05);
+        }
+
+        .info-label {
+            font-size: 12px;
+            color: var(--muted);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 6px;
+        }
+
+        .info-value {
+            font-size: 16px;
+            color: var(--brand);
+            font-weight: 600;
+        }
+
+        .info-value.empty {
+            color: var(--muted);
+            font-style: italic;
+        }
+
+        /* Action Buttons */
+        .action-section {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-bottom: 16px;
+        }
+
+        .btn {
+            flex: 1;
+            min-width: 120px;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-decoration: none;
+            text-align: center;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #e56a15;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(255,122,24,0.3);
+        }
+
+        .logout-form {
+            width: 100%;
+        }
+
+        .logout-btn {
+            width: 100%;
+            background: #e74c3c;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .logout-btn:hover {
+            background: #c0392b;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(231, 76, 60, 0.3);
+        }
+
+        /* Footer */
+        .footer {
+            margin-top: 24px;
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(15,23,36,0.1);
+        }
+
+        .footer p {
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        .footer a {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .profile-container {
+                padding: 28px;
+            }
+            
+            .profile-name {
+                font-size: 24px;
+            }
+            
+            .action-section {
+                flex-direction: column;
+            }
+            
+            .btn {
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 16px;
+            }
+            
+            .profile-container {
+                padding: 24px;
+            }
+            
+            .profile-photo {
+                width: 100px;
+                height: 100px;
+            }
+            
+            .profile-name {
+                font-size: 20px;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-in {
+            animation: fadeInUp 0.6s ease forwards;
+        }
+    </style>
+</head>
+<body>
+    <div class="profile-container animate-in">
+        <!-- Header Section -->
+        <div class="profile-header">
+            {% if user.profile_photo %}
+                <img src="{{ user.profile_photo.url }}" alt="Profile Photo" class="profile-photo">
+            {% else %}
+                <img src="{% static 'images/profile_icon.png' %}" alt="Profile Photo" class="profile-photo">
+            {% endif %}
+            
+            <h1 class="profile-name">{{ user.full_name|default:user.username }}</h1>
+            <p class="profile-role">Skyhills Apartment Resident</p>
+            <div class="resident-badge">Verified Resident</div>
+        </div>
+
+        <!-- Contact Information -->
+        <div class="info-section">
+            <h3 class="section-title">Contact Information</h3>
+            <div class="info-grid">
+                <div class="info-item">
+                    <div class="info-label">Email Address</div>
+                    <div class="info-value">{{ user.email|default:"Not provided" }}</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label">Phone Number</div>
+                    <div class="info-value {% if not user.phone_number %}empty{% endif %}">
+                        {{ user.phone_number|default:"Not provided" }}
+                    </div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label">Flat Number</div>
+                    <div class="info-value {% if not user.flat_number %}empty{% endif %}">
+                        {{ user.flat_number|default:"Not provided" }}
+                    </div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label">Address</div>
+                    <div class="info-value {% if not user.address %}empty{% endif %}">
+                        {{ user.address|default:"Not provided" }}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="action-section">
+            <a href="{% url 'service_requests:resident_dashboard' %}" class="btn btn-primary">
+                 My Service Requests
+            </a>
+        </div>
+
+        <!-- Logout Button -->
+        <form method="POST" action="{% url 'accounts:logout' %}" class="logout-form">
+            {% csrf_token %}
+            <button type="submit" class="logout-btn">
+                 Logout
+            </button>
+        </form>
+
+        <!-- Footer -->
+        <div class="footer">
+            <p>Need help? <a href="mailto:rwa@skyhillsapt.com">Contact RWA</a></p>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add staggered animation to info items
+            const infoItems = document.querySelectorAll('.info-item');
+            infoItems.forEach((item, index) => {
+                item.style.opacity = '0';
+                item.style.transform = 'translateX(-20px)';
+                
+                setTimeout(() => {
+                    item.style.transition = 'all 0.5s ease';
+                    item.style.opacity = '1';
+                    item.style.transform = 'translateX(0)';
+                }, 300 + (index * 100));
+            });
+
+            // Add hover effect to profile photo
+            const profilePhoto = document.querySelector('.profile-photo');
+            if (profilePhoto) {
+                profilePhoto.addEventListener('mouseenter', function() {
+                    this.style.transform = 'scale(1.05)';
+                });
+                
+                profilePhoto.addEventListener('mouseleave', function() {
+                    this.style.transform = 'scale(1)';
+                });
+            }
+
+            // Add click effect to buttons
+            const buttons = document.querySelectorAll('.btn, .logout-btn');
+            buttons.forEach(btn => {
+                btn.addEventListener('mousedown', function() {
+                    this.style.transform = 'scale(0.98)';
+                });
+                
+                btn.addEventListener('mouseup', function() {
+                    this.style.transform = '';
+                });
+                
+                btn.addEventListener('mouseleave', function() {
+                    this.style.transform = '';
+                });
+            });
+        });
+    </script>
+</body>
+</html>

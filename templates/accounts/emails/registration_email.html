@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Service Provider Application Received - ResiReach</title>
+</head>
+<body style="margin: 0; padding: 0; font-family: 'Segoe UI', Arial, sans-serif; background-color: #f7f8fb; color: #0f1724; line-height: 1.6;">
+  <div style="max-width: 600px; margin: 40px auto; background-color: #ffffff; border-radius: 12px; overflow: hidden; box-shadow: 0 6px 18px rgba(0,0,0,0.08);">
+    <!-- Header -->
+    <div style="background: #0f1724; color: white; text-align: center; padding: 30px 20px;">
+      <div style="font-size: 28px; font-weight: 800; margin-bottom: 8px; color: white;">ResiReach</div>
+      <div style="font-size: 14px; color: #cccccc; font-weight: 500;">Skyhills Apartment Service Provider Network</div>
+    </div>
+    
+    <!-- Content -->
+    <div style="padding: 40px;">
+      <div style="font-size: 24px; font-weight: 700; margin-bottom: 20px; color: #0f1724;">Hello {{ provider.full_name }},</div>
+      
+      <p style="margin: 0 0 20px 0;">Thank you for your interest in joining the ResiReach service provider network! Your application for <strong style="color: #ff7a18;">{{ provider.service_category.name }}</strong> has been successfully received and is currently <strong style="color: #ff7a18;">pending admin approval</strong>.</p>
+      
+      <!-- Application Details -->
+      <div style="background: #f8f9fa; padding: 20px; border-radius: 8px; margin: 24px 0; border-left: 4px solid #ff7a18;">
+        <div style="font-weight: 700; margin-bottom: 16px; color: #0f1724;">📋 Application Summary</div>
+        
+        <div style="display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-bottom: 1px solid #e5e7eb;">
+          <span style="color: #6b7280; font-weight: 600; font-size: 14px;">Service Category:</span>
+          <span style="color: #0f1724; font-weight: 700; font-size: 15px;">{{ provider.service_category.name }}</span>
+        </div>
+        
+        <div style="display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-bottom: 1px solid #e5e7eb;">
+          <span style="color: #6b7280; font-weight: 600; font-size: 14px;">Applicant Name:</span>
+          <span style="color: #0f1724; font-weight: 700; font-size: 15px;">{{ provider.full_name }}</span>
+        </div>
+        
+        <div style="display: flex; justify-content: space-between; align-items: center; padding: 8px 0;">
+          <span style="color: #6b7280; font-weight: 600; font-size: 14px;">Application Status:</span>
+          <span style="color: #ff7a18; font-weight: 700; font-size: 15px;">⏳ Under Review</span>
+        </div>
+      </div>
+      
+      <!-- Verification Process -->
+      <div style="margin: 24px 0;">
+        <div style="font-size: 18px; font-weight: 700; margin-bottom: 16px; color: #0f1724;">Next Steps in Our Process</div>
+        
+        <div style="display: flex; align-items: flex-start; margin-bottom: 16px; padding: 12px; background: #f8f9fa; border-radius: 8px;">
+          <div style="background: #ff7a18; color: white; width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; margin-right: 12px;">1</div>
+          <div style="flex: 1; color: #0f1724; font-size: 14px;">
+            <strong>Document Verification</strong><br>
+            Our committee will review your submitted documents and credentials
+          </div>
+        </div>
+        
+        <div style="display: flex; align-items: flex-start; margin-bottom: 16px; padding: 12px; background: #f8f9fa; border-radius: 8px;">
+          <div style="background: #ff7a18; color: white; width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; margin-right: 12px;">2</div>
+          <div style="flex: 1; color: #0f1724; font-size: 14px;">
+            <strong>Physical Verification</strong><br>
+            We will contact you to schedule an in-person verification if required
+          </div>
+        </div>
+        
+        <div style="display: flex; align-items: flex-start; margin-bottom: 16px; padding: 12px; background: #f8f9fa; border-radius: 8px;">
+          <div style="background: #ff7a18; color: white; width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; margin-right: 12px;">3</div>
+          <div style="flex: 1; color: #0f1724; font-size: 14px;">
+            <strong>Background Check</strong><br>
+            Verification of references and work experience
+          </div>
+        </div>
+        
+        <div style="display: flex; align-items: flex-start; margin-bottom: 16px; padding: 12px; background: #f8f9fa; border-radius: 8px;">
+          <div style="background: #ff7a18; color: white; width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; margin-right: 12px;">4</div>
+          <div style="flex: 1; color: #0f1724; font-size: 14px;">
+            <strong>Final Approval</strong><br>
+            You'll receive notification once approved to start accepting service requests
+          </div>
+        </div>
+      </div>
+      
+      <!-- Important Notice -->
+      <div style="background: #fff3e0; padding: 16px; border-radius: 8px; margin: 24px 0; border-left: 4px solid #ff7a18;">
+        <p style="margin: 0; font-weight: 700; color: #0f1724;">📞 Keep Your Phone Accessible</p>
+        <p style="margin: 8px 0 0 0; color: #6b7280; font-size: 14px;">Our verification team may contact you at <strong>{{ provider.mobile }}</strong> to schedule physical verification. Please ensure you're available for this important step.</p>
+      </div>
+      
+      <!-- Processing Timeline -->
+      <div style="background: #f0f9ff; padding: 16px; border-radius: 8px; margin: 24px 0; border-left: 4px solid #0ea5e9;">
+        <p style="margin: 0; font-weight: 700; color: #0f1724;">⏱️ Expected Timeline</p>
+        <p style="margin: 8px 0 0 0; color: #6b7280; font-size: 14px;">The complete verification process typically takes 3-5 business days. You'll be notified at each major step of the process.</p>
+      </div>
+      
+      <!-- Contact Information -->
+      <div style="background: #f8f9fa; padding: 16px; border-radius: 8px; margin: 24px 0;">
+        <p style="margin: 0 0 8px 0; font-weight: 700; color: #0f1724;">Need to Update Your Application?</p>
+        <p style="margin: 0; color: #6b7280; font-size: 14px;">
+          📧 <a href="mailto:providers@resireach.com" style="color: #ff7a18; text-decoration: none; font-weight: 600;">providers@resireach.com</a> | 
+          📞 <a href="tel:+919876543210" style="color: #ff7a18; text-decoration: none; font-weight: 600;">+91 98765 43210</a>
+        </p>
+      </div>
+      
+      <!-- Closing -->
+      <p style="margin: 0 0 20px 0;">We appreciate your patience during this verification process and look forward to potentially welcoming you to our trusted network of service providers.</p>
+      
+      <div style="margin-top: 24px; padding-top: 20px; border-top: 1px solid #e5e7eb;">
+        <p style="margin: 0; font-weight: 600; color: #0f1724;">Best regards,</p>
+        <p style="margin: 4px 0 0 0; color: #6b7280;">The SkyHills Apartment RWA Committee<br>ResiReach Provider Network Team</p>
+      </div>
+    </div>
+    
+    <!-- Footer -->
+    <div style="background: #f8f9fa; text-align: center; padding: 30px 20px; font-size: 13px; color: #6b7280; border-top: 1px solid #e5e7eb;">
+      <div style="margin-bottom: 8px;">
+        <strong>ResiReach - Skyhills Apartment Service Provider Network</strong>
+      </div>
+      <p style="margin: 8px 0 0 0; font-size: 12px;">
+        Connecting trusted service professionals with our community
+      </p>
+      <p style="margin: 16px 0 0 0; font-size: 12px; color: #9ca3af;">
+        © 2025 ResiReach. All rights reserved.
+      </p>
+    </div>
+  </div>
+</body>
+</html>

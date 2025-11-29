@@ -1,0 +1,333 @@
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Respond to Service Request | ResiReach</title>
+  <style>
+    :root {
+      --bg: #f7f8fb;
+      --card: #ffffff;
+      --brand: #0f1724; /* navy */
+      --accent: #ff7a18; /* warm orange */
+      --muted: #6b7280;
+      --success: #0f8a5f;
+      --radius: 12px;
+      --max-width: 800px;
+      --gap: 20px;
+      --shadow: 0 6px 18px rgba(15,23,36,0.04);
+      font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--brand);
+      line-height: 1.45;
+      min-height: 100vh;
+      padding: 0;
+    }
+
+    .container {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 40px 28px;
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 40px;
+      padding-bottom: 20px;
+      border-bottom: 2px solid rgba(15,23,36,0.1);
+    }
+
+    .header h2 {
+      font-size: 32px;
+      color: var(--brand);
+      margin-bottom: 16px;
+    }
+
+    .request-info {
+      background: var(--card);
+      padding: 20px;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      margin-bottom: 30px;
+    }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 16px;
+    }
+
+    .info-item {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .info-label {
+      font-size: 14px;
+      color: var(--muted);
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .info-value {
+      font-size: 16px;
+      color: var(--brand);
+      font-weight: 600;
+    }
+
+    .response-form {
+      background: var(--card);
+      border-radius: var(--radius);
+      padding: 40px;
+      box-shadow: var(--shadow);
+    }
+
+    .form-section {
+      margin-bottom: 30px;
+    }
+
+    .section-title {
+      font-size: 20px;
+      color: var(--brand);
+      margin-bottom: 20px;
+      font-weight: 700;
+    }
+
+    .form-group {
+      margin-bottom: 24px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 600;
+      color: var(--brand);
+      font-size: 14px;
+    }
+
+    .required::after {
+      content: " *";
+      color: #e74c3c;
+    }
+
+    .form-control,
+    select,
+    textarea,
+    input[type="date"],
+    input[type="time"] {
+      width: 100%;
+      padding: 12px 16px;
+      border: 1px solid rgba(15,23,36,0.1);
+      border-radius: 8px;
+      font-size: 15px;
+      transition: all 0.2s;
+      font-family: inherit;
+      background: var(--card);
+    }
+
+    select {
+      appearance: none;
+      background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230f1724' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+      background-repeat: no-repeat;
+      background-position: right 16px center;
+      background-size: 16px;
+      padding-right: 40px;
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 120px;
+      font-family: inherit;
+    }
+
+    .datetime-group {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .btn {
+      display: block;
+      width: 100%;
+      padding: 16px;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
+      text-align: center;
+      background: var(--accent);
+      color: white;
+    }
+
+    .action-description {
+      background: rgba(15,23,36,0.02);
+      padding: 16px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      border-left: 4px solid var(--accent);
+    }
+
+    .conditional-field {
+      display: none;
+    }
+
+    .conditional-field.active {
+      display: block;
+    }
+
+  </style>
+</head>
+
+<body>
+  <div class="container">
+
+    <!-- Header -->
+    <div class="header">
+      <h2>Respond to Service Request</h2>
+      <p>Provide your response to the resident's service request</p>
+    </div>
+
+    <!-- Request Information -->
+    <div class="request-info">
+      <div class="info-grid">
+        <div class="info-item">
+          <span class="info-label">Request ID</span>
+          <span class="info-value">#{{ sr.pk }}</span>
+        </div>
+
+        <div class="info-item">
+          <span class="info-label">Service Category</span>
+          <span class="info-value">{{ sr.category.name }}</span>
+        </div>
+
+        <div class="info-item">
+          <span class="info-label">Resident</span>
+          <span class="info-value">{{ sr.first_name }} {{ sr.last_name }}</span>
+        </div>
+
+        <div class="info-item">
+          <span class="info-label">Phone</span>
+          <span class="info-value">{{ sr.phone }}</span>
+        </div>
+
+        <div class="info-item">
+          <span class="info-label">Apartment</span>
+          <span class="info-value">{{ sr.apartment_details }}</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Response Form -->
+    <form class="response-form" method="post">
+      {% csrf_token %}
+
+      <div class="form-section">
+        <h3 class="section-title">Your Response</h3>
+
+        <div class="form-group">
+          <label for="action" class="required">Select Action</label>
+          <select id="action" name="action" class="form-control" required>
+            <option value="">Choose an action...</option>
+            <option value="accept" {% if existing and existing.action == 'accept' %}selected{% endif %}>Accept</option>
+            <option value="reject" {% if existing and existing.action == 'reject' %}selected{% endif %}>Reject</option>
+            <option value="propose" {% if existing and existing.action == 'propose' %}selected{% endif %}>Propose New Time</option>
+          </select>
+        </div>
+
+        <!-- Descriptions -->
+        <div class="action-description" id="acceptDescription" style="display: none;">
+          <p><strong>Accept:</strong> You agree to take this service request.</p>
+        </div>
+
+        <div class="action-description" id="rejectDescription" style="display: none;">
+          <p><strong>Reject:</strong> Please provide a reason in the message box.</p>
+        </div>
+
+        <div class="action-description" id="proposeDescription" style="display: none;">
+          <p><strong>Propose:</strong> Suggest a new date & time.</p>
+        </div>
+
+      </div>
+
+      <!-- Message -->
+      <div class="form-section">
+        <div class="form-group">
+          <label for="message">Additional Message (Optional)</label>
+          <textarea id="message" name="message" class="form-control">{% if existing %}{{ existing.message }}{% endif %}</textarea>
+        </div>
+      </div>
+
+      <!-- Proposed time (conditional) -->
+      <div class="form-section conditional-field" id="proposedTimeFields">
+        <h3 class="section-title">Proposed Schedule</h3>
+        <div class="form-group">
+          <div class="datetime-group">
+            <div>
+              <label class="required" for="proposed_date">Date</label>
+              <input type="date" id="proposed_date" name="proposed_date" class="form-control"
+                value="{% if existing and existing.proposed_date %}{{ existing.proposed_date }}{% endif %}">
+            </div>
+            <div>
+              <label class="required" for="proposed_time">Time</label>
+              <input type="time" id="proposed_time" name="proposed_time" class="form-control"
+                value="{% if existing and existing.proposed_time %}{{ existing.proposed_time }}{% endif %}">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <button type="submit" class="btn">Send Response</button>
+    </form>
+
+  </div>
+
+  <script>
+    const actionSelect = document.getElementById('action');
+    const proposedTimeFields = document.getElementById('proposedTimeFields');
+    const acceptDescription = document.getElementById('acceptDescription');
+    const rejectDescription = document.getElementById('rejectDescription');
+    const proposeDescription = document.getElementById('proposeDescription');
+
+    function hideAll() {
+      acceptDescription.style.display = 'none';
+      rejectDescription.style.display = 'none';
+      proposeDescription.style.display = 'none';
+    }
+
+    function handleAction() {
+      hideAll();
+      proposedTimeFields.classList.remove('active');
+      document.getElementById('proposed_date').required = false;
+      document.getElementById('proposed_time').required = false;
+
+      const v = actionSelect.value;
+      if (v === "accept") acceptDescription.style.display = "block";
+      if (v === "reject") rejectDescription.style.display = "block";
+      if (v === "propose") {
+        proposeDescription.style.display = "block";
+        proposedTimeFields.classList.add('active');
+        document.getElementById('proposed_date').required = true;
+        document.getElementById('proposed_time').required = true;
+      }
+    }
+
+    actionSelect.addEventListener('change', handleAction);
+    document.addEventListener('DOMContentLoaded', handleAction);
+  </script>
+
+</body>
+</html>
+{% endblock %}

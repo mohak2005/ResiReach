@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Service Provider Login | ResiReach</title>
+  <style>
+    :root {
+      --primary: #2c5aa0;
+      --primary-dark: #1e3d72;
+      --accent: #ff6b35;
+      --accent-dark: #e55a2b;
+      --light: #f8f9fa;
+      --dark: #343a40;
+      --gray: #6c757d;
+      --border: #dee2e6;
+      --shadow: 0 4px 12px rgba(0,0,0,0.1);
+      --transition: all 0.3s ease;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    
+    body {
+      background: linear-gradient(135deg, #f5f7fa 0%, #e4edf5 100%);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+    
+    .container {
+      display: flex;
+      max-width: 1000px;
+      width: 100%;
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+    
+    .brand-section {
+      flex: 1;
+      background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dark) 100%);
+      color: white;
+      padding: 40px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+    
+    .brand-logo {
+      width: 80px;
+      height: 80px;
+      background: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+      font-size: 36px;
+      color: var(--accent);
+      font-weight: bold;
+    }
+    
+    .brand-section h1 {
+      font-size: 28px;
+      margin-bottom: 10px;
+      font-weight: 600;
+    }
+    
+    .brand-section p {
+      font-size: 16px;
+      opacity: 0.9;
+      line-height: 1.6;
+    }
+    
+    .service-provider-badge {
+      display: inline-block;
+      background: rgba(255, 255, 255, 0.2);
+      padding: 8px 16px;
+      border-radius: 20px;
+      margin-top: 20px;
+      font-size: 14px;
+      font-weight: 500;
+    }
+    
+    .features-list {
+      margin-top: 30px;
+      text-align: left;
+    }
+    
+    .features-list h3 {
+      margin-bottom: 15px;
+      font-size: 18px;
+    }
+    
+    .feature-item {
+      display: flex;
+      align-items: center;
+      margin-bottom: 12px;
+      font-size: 14px;
+    }
+    
+    .feature-item i {
+      margin-right: 10px;
+      font-size: 16px;
+    }
+    
+    .form-section {
+      flex: 1;
+      padding: 40px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    
+    .form-header {
+      margin-bottom: 30px;
+      text-align: center;
+    }
+    
+    .form-header h2 {
+      color: var(--primary);
+      font-size: 24px;
+      margin-bottom: 8px;
+    }
+    
+    .form-header p {
+      color: var(--gray);
+      font-size: 14px;
+    }
+    
+    .form-group {
+      margin-bottom: 20px;
+    }
+    
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 500;
+      color: var(--dark);
+      font-size: 14px;
+    }
+    
+    .form-control {
+      width: 100%;
+      padding: 12px 15px;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      font-size: 15px;
+      transition: var(--transition);
+    }
+    
+    .form-control:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(44, 90, 160, 0.1);
+    }
+    
+    .password-container {
+      position: relative;
+    }
+    
+    .toggle-password {
+      position: absolute;
+      right: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      color: var(--gray);
+      cursor: pointer;
+    }
+    
+    .form-options {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+      font-size: 14px;
+    }
+    
+    .remember-me {
+      display: flex;
+      align-items: center;
+    }
+    
+    .remember-me input {
+      margin-right: 8px;
+    }
+    
+    .forgot-password {
+      color: var(--primary);
+      text-decoration: none;
+    }
+    
+    .forgot-password:hover {
+      text-decoration: underline;
+    }
+    
+    .btn {
+      display: block;
+      width: 100%;
+      padding: 14px;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+      text-align: center;
+    }
+    
+    .btn-primary {
+      background: var(--accent);
+      color: white;
+    }
+    
+    .btn-primary:hover {
+      background: var(--accent-dark);
+    }
+    
+    .btn-outline {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--dark);
+      margin-top: 10px;
+    }
+    
+    .btn-outline:hover {
+      background: var(--light);
+    }
+    
+    .divider {
+      text-align: center;
+      margin: 20px 0;
+      position: relative;
+      color: var(--gray);
+      font-size: 14px;
+    }
+    
+    .divider::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 50%;
+      width: 45%;
+      height: 1px;
+      background: var(--border);
+    }
+    
+    .divider::after {
+      content: "";
+      position: absolute;
+      right: 0;
+      top: 50%;
+      width: 45%;
+      height: 1px;
+      background: var(--border);
+    }
+    
+    .form-footer {
+      margin-top: 25px;
+      text-align: center;
+      font-size: 14px;
+      color: var(--gray);
+    }
+    
+    .form-footer a {
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 500;
+    }
+    
+    .form-footer a:hover {
+      text-decoration: underline;
+    }
+    
+    .messages {
+      position: fixed;
+      top: 40px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80%;
+      max-width: 500px;
+      text-align: center;
+      z-index: 999;
+    }
+
+    .alert {
+      padding: 16px 20px;
+      border-radius: 6px;
+      margin-bottom: 10px;
+      font-weight: 500;
+      box-shadow: var(--shadow);
+      animation: fadeIn 0.5s ease-in-out;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .alert::before {
+      margin-right: 10px;
+      font-size: 16px;
+    }
+
+    .alert-success {
+      background-color: #d1fae5;
+      color: #065f46;
+      border: 1px solid #a7f3d0;
+    }
+
+    .alert-success::before {
+      content: '✓';
+    }
+
+    .alert-error {
+      background-color: #fee2e2;
+      color: #991b1b;
+      border: 1px solid #fecaca;
+    }
+
+    .alert-error::before {
+      content: '!';
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .container {
+        flex-direction: column;
+        max-width: 500px;
+      }
+      
+      .brand-section {
+        padding: 30px 20px;
+      }
+      
+      .form-section {
+        padding: 30px 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  {% if messages %}
+  <div class="messages">
+    {% for message in messages %}
+    <div class="alert {% if message.tags %}alert-{{ message.tags }}{% else %}alert-error{% endif %}">
+      {{ message }}
+    </div>
+    {% endfor %}
+  </div>
+  {% endif %}
+
+  <div class="container">
+    <!-- Brand Section -->
+    <div class="brand-section">
+      <div class="brand-logo">RR</div>
+      <h1>ResiReach</h1>
+      <p>SkyHills Apartment Service Portal</p>
+      <div class="service-provider-badge">Service Provider Access</div>
+      
+      <div class="features-list">
+        <h3>Benefits for Service Providers:</h3>
+        <div class="feature-item">
+          <i>✓</i> Access to service requests from residents
+        </div>
+        <div class="feature-item">
+          <i>✓</i> Manage your service schedule
+        </div>
+        <div class="feature-item">
+          <i>✓</i> Track your earnings and ratings
+        </div>
+        <div class="feature-item">
+          <i>✓</i> Build your professional reputation
+        </div>
+      </div>
+    </div>
+    
+    <!-- Form Section -->
+    <div class="form-section">
+      <div class="form-header">
+        <h2>Service Provider Login</h2>
+        <p>Access your service provider dashboard</p>
+      </div>
+      
+    
+      <form method="POST" action="{% url 'accounts:login_service_provider' %}">
+        {% csrf_token %}
+        <div class="form-group">
+          <label for="username">Username</label>
+          <input type="text" name="username" id="username" class="form-control" placeholder="Enter your username" required>
+        </div>
+
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" name="password" id="password" class="form-control" placeholder="Enter your password" required>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Login</button>
+
+        <div class="form-footer">
+          <p>Don't have an account? <a href="{% url 'accounts:signup_service_provider' %}">Register here</a></p>
+        </div>
+      </form>
+
+    </div>
+  </div>
+
+  <script>
+    // Toggle password visibility
+    const togglePassword = document.getElementById('togglePassword');
+    const passwordInput = document.getElementById('password');
+    
+    togglePassword.addEventListener('click', function() {
+      const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+      passwordInput.setAttribute('type', type);
+      this.textContent = type === 'password' ? '👁️' : '🔒';
+    });
+    
+    // Form submission
+    document.getElementById('serviceProviderLoginForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const username = document.getElementById('username').value;
+      const password = document.getElementById('password').value;
+      const rememberMe = document.getElementById('rememberMe').checked;
+      
+      // Add your login logic here
+      console.log('Login attempt:', { username, password, rememberMe });
+      
+      // Simulate login process
+      // In a real application, you would make an API call here
+      // For demo purposes, we'll show the approval alert for certain usernames
+      if (username.toLowerCase().includes('pending')) {
+        document.getElementById('approvalAlert').style.display = 'block';
+      } else {
+        // Redirect to dashboard or show success
+        alert('Login successful! Redirecting to dashboard...');
+        // In real app: window.location.href = 'service-provider-dashboard.html';
+      }
+    });
+    
+    // Check URL parameters for approval status
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get('pending') === 'true') {
+      document.getElementById('approvalAlert').style.display = 'block';
+    }
+  </script>
+</body>
+</html>

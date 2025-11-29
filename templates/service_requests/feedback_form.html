@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Submit Feedback | ResiReach</title>
+  <style>
+    :root {
+      --bg: #f7f8fb;
+      --card: #ffffff;
+      --brand: #0f1724; /* navy */
+      --accent: #ff7a18; /* warm orange */
+      --muted: #6b7280;
+      --success: #0f8a5f;
+      --radius: 12px;
+      --max-width: 600px;
+      --gap: 20px;
+      --shadow: 0 6px 18px rgba(15,23,36,0.04);
+      font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--brand);
+      line-height: 1.45;
+      min-height: 100vh;
+      padding: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .container {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 40px 28px;
+      width: 100%;
+    }
+
+    /* Header */
+    .feedback-header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .feedback-header h2 {
+      font-size: 32px;
+      color: var(--brand);
+      margin-bottom: 16px;
+    }
+
+    .request-id {
+      background: var(--accent);
+      color: white;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 14px;
+      font-weight: 600;
+      display: inline-block;
+      margin-bottom: 16px;
+    }
+
+    /* Feedback Card */
+    .feedback-card {
+      background: var(--card);
+      padding: 40px;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .service-info {
+      background: rgba(15,23,36,0.02);
+      padding: 20px;
+      border-radius: 8px;
+      margin-bottom: 32px;
+      border-left: 4px solid var(--accent);
+    }
+
+    .service-label {
+      font-size: 14px;
+      color: var(--muted);
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .service-name {
+      font-size: 18px;
+      color: var(--brand);
+      font-weight: 700;
+    }
+
+    .provider-name {
+      font-size: 16px;
+      color: var(--muted);
+      margin-top: 4px;
+    }
+
+    /* Star Rating */
+    .rating-section {
+      text-align: center;
+      margin-bottom: 32px;
+    }
+
+    .rating-label {
+      font-size: 16px;
+      color: var(--brand);
+      font-weight: 600;
+      margin-bottom: 16px;
+      display: block;
+    }
+
+    .star-rating {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+
+    .star {
+      font-size: 40px;
+      color: #e0e0e0;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      user-select: none;
+    }
+
+    .star:hover {
+      transform: scale(1.2);
+    }
+
+    .star.active {
+      color: #ffc107;
+    }
+
+    .rating-text {
+      font-size: 14px;
+      color: var(--muted);
+      font-weight: 500;
+      min-height: 20px;
+    }
+
+    .rating-descriptions {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 8px;
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .rating-desc {
+      text-align: center;
+      flex: 1;
+    }
+
+    /* Form Elements */
+    .form-group {
+      margin-bottom: 24px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 600;
+      color: var(--brand);
+      font-size: 14px;
+    }
+
+    textarea {
+      width: 100%;
+      padding: 16px;
+      border: 1px solid rgba(15,23,36,0.1);
+      border-radius: 8px;
+      font-size: 15px;
+      transition: all 0.2s;
+      font-family: inherit;
+      background: var(--card);
+      resize: vertical;
+      min-height: 120px;
+    }
+
+    textarea:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(255,122,24,0.1);
+    }
+
+    textarea::placeholder {
+      color: #9ca3af;
+    }
+
+    /* Action Buttons */
+    .action-buttons {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 16px 32px;
+      border-radius: 8px;
+      border: none;
+      font-weight: 700;
+      cursor: pointer;
+      font-size: 16px;
+      transition: all 0.2s;
+      text-decoration: none;
+      display: inline-block;
+      text-align: center;
+      min-width: 200px;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: white;
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--brand);
+      border: 2px solid rgba(15,23,36,0.1);
+    }
+
+    .btn-primary:hover {
+      background: #e56a15;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(255,122,24,0.3);
+    }
+
+    .btn-outline:hover {
+      border-color: var(--accent);
+      transform: translateY(-2px);
+    }
+
+    .btn:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none;
+      box-shadow: none;
+    }
+
+    /* Hidden rating input */
+    .rating-input {
+      display: none;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .container {
+        padding: 28px 20px;
+      }
+      
+      .feedback-header h2 {
+        font-size: 28px;
+      }
+      
+      .feedback-card {
+        padding: 28px;
+      }
+      
+      .star {
+        font-size: 36px;
+      }
+      
+      .action-buttons {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .btn {
+        width: 100%;
+        max-width: 300px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .container {
+        padding: 20px 16px;
+      }
+      
+      .feedback-header h2 {
+        font-size: 24px;
+      }
+      
+      .feedback-card {
+        padding: 20px;
+      }
+      
+      .star {
+        font-size: 32px;
+      }
+      
+      .rating-descriptions {
+        flex-direction: column;
+        gap: 4px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <!-- Header -->
+    <div class="feedback-header">
+      <div class="request-id">Request #{{ sr.pk }}</div>
+      <h2>Share Your Feedback</h2>
+    </div>
+
+    <!-- Feedback Card -->
+    <form method="post" class="feedback-card">
+      {% csrf_token %}
+      
+      <!-- Hidden rating input for form submission -->
+      <input type="hidden" name="rating" id="ratingInput" class="rating-input" required>
+
+      <!-- Service Information -->
+      <div class="service-info">
+        <div class="service-label">Service Completed</div>
+        <div class="service-name">{{ sr.category.name }}</div>
+        {% if sr.confirmed_provider %}
+        <div class="provider-name">by {{ sr.confirmed_provider.full_name }}</div>
+        {% endif %}
+      </div>
+
+      <!-- Star Rating -->
+      <div class="rating-section">
+        <label class="rating-label">How would you rate this service?</label>
+        
+        <div class="star-rating" id="starRating">
+          <span class="star" data-rating="1">★</span>
+          <span class="star" data-rating="2">★</span>
+          <span class="star" data-rating="3">★</span>
+          <span class="star" data-rating="4">★</span>
+          <span class="star" data-rating="5">★</span>
+        </div>
+        
+        <div class="rating-text" id="ratingText">Please select a rating</div>
+        
+        <div class="rating-descriptions">
+          <div class="rating-desc">Poor</div>
+          <div class="rating-desc">Fair</div>
+          <div class="rating-desc">Good</div>
+          <div class="rating-desc">Very Good</div>
+          <div class="rating-desc">Excellent</div>
+        </div>
+      </div>
+
+      <!-- Comment Section -->
+      <div class="form-group">
+        <label for="comment">Share your experience (optional)</label>
+        <textarea 
+          id="comment" 
+          name="comment" 
+          placeholder="Tell us about your experience with this service. What went well? Any suggestions for improvement?"
+        ></textarea>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="action-buttons">
+        <button type="submit" class="btn btn-primary" id="submitBtn" disabled>
+          Submit Feedback
+        </button>
+        <a href="{% url 'service_requests:resident_request_detail' sr.pk %}" class="btn btn-outline">
+          Back to Details
+        </a>
+      </div>
+    </form>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const stars = document.querySelectorAll('.star');
+      const ratingInput = document.getElementById('ratingInput');
+      const ratingText = document.getElementById('ratingText');
+      const submitBtn = document.getElementById('submitBtn');
+      
+      const ratingDescriptions = {
+        1: 'Poor - Very dissatisfied with the service',
+        2: 'Fair - Service needs improvement',
+        3: 'Good - Satisfactory service experience',
+        4: 'Very Good - Great service, would recommend',
+        5: 'Excellent - Outstanding service experience'
+      };
+
+      let currentRating = 0;
+
+      // Star rating functionality
+      stars.forEach(star => {
+        star.addEventListener('click', function() {
+          const rating = parseInt(this.getAttribute('data-rating'));
+          currentRating = rating;
+          ratingInput.value = rating;
+          
+          // Update stars appearance
+          stars.forEach(s => {
+            const starRating = parseInt(s.getAttribute('data-rating'));
+            if (starRating <= rating) {
+              s.classList.add('active');
+              s.style.color = '#ffc107';
+            } else {
+              s.classList.remove('active');
+              s.style.color = '#e0e0e0';
+            }
+          });
+          
+          // Update rating text
+          ratingText.textContent = ratingDescriptions[rating];
+          ratingText.style.color = 'var(--brand)';
+          ratingText.style.fontWeight = '600';
+          
+          // Enable submit button
+          submitBtn.disabled = false;
+        });
+
+        // Hover effects
+        star.addEventListener('mouseenter', function() {
+          const hoverRating = parseInt(this.getAttribute('data-rating'));
+          
+          stars.forEach(s => {
+            const starRating = parseInt(s.getAttribute('data-rating'));
+            if (starRating <= hoverRating) {
+              s.style.color = '#ffc107';
+              s.style.opacity = '0.7';
+            }
+          });
+        });
+
+        star.addEventListener('mouseleave', function() {
+          stars.forEach(s => {
+            const starRating = parseInt(s.getAttribute('data-rating'));
+            if (currentRating === 0 || starRating > currentRating) {
+              s.style.color = '#e0e0e0';
+            }
+            s.style.opacity = '1';
+          });
+        });
+      });
+
+      // Form submission handling
+      const form = document.querySelector('form');
+      form.addEventListener('submit', function(e) {
+        if (currentRating === 0) {
+          e.preventDefault();
+          ratingText.textContent = 'Please select a rating before submitting';
+          ratingText.style.color = '#e74c3c';
+          return;
+        }
+        
+        // Show loading state
+        submitBtn.innerHTML = '⏳ Submitting...';
+        submitBtn.disabled = true;
+      });
+
+      // Animation on load
+      const starsContainer = document.getElementById('starRating');
+      starsContainer.style.opacity = '0';
+      starsContainer.style.transform = 'translateY(20px)';
+      
+      setTimeout(() => {
+        starsContainer.style.transition = 'all 0.5s ease';
+        starsContainer.style.opacity = '1';
+        starsContainer.style.transform = 'translateY(0)';
+      }, 300);
+
+      // Animate service info card
+      const serviceInfo = document.querySelector('.service-info');
+      serviceInfo.style.opacity = '0';
+      serviceInfo.style.transform = 'translateX(-20px)';
+      
+      setTimeout(() => {
+        serviceInfo.style.transition = 'all 0.5s ease';
+        serviceInfo.style.opacity = '1';
+        serviceInfo.style.transform = 'translateX(0)';
+      }, 500);
+    });
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Provider Response - ResiReach</title>
+</head>
+<body style="margin: 0; padding: 0; font-family: 'Segoe UI', Arial, sans-serif; background-color: #f7f8fb; color: #0f1724; line-height: 1.6;">
+  <div style="max-width: 600px; margin: 40px auto; background-color: #ffffff; border-radius: 12px; overflow: hidden; box-shadow: 0 6px 18px rgba(0,0,0,0.08);">
+    <!-- Header -->
+    <div style="background: #0f1724; color: white; text-align: center; padding: 30px 20px;">
+      <div style="font-size: 28px; font-weight: 800; margin-bottom: 8px; color: white;">ResiReach</div>
+      <div style="font-size: 14px; color: #cccccc; font-weight: 500;">Skyhills Apartment Service Provider Network</div>
+    </div>
+
+    <!-- Content -->
+    <div style="padding: 40px;">
+      <!-- Notification Icon -->
+      <div style="text-align: center; margin-bottom: 24px;">
+        <div style="background: #0ea5e9; color: white; width: 80px; height: 80px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 36px; font-weight: bold; margin-bottom: 16px;">
+          ✓
+        </div>
+      </div>
+
+      <div style="font-size: 24px; font-weight: 700; margin-bottom: 20px; color: #0f1724; text-align: center;">Provider Response Received!</div>
+
+      <p style="margin: 0 0 20px 0; text-align: center;">Hello <strong>{{ service_request.first_name }}</strong>,</p>
+
+      <p style="margin: 0 0 20px 0; text-align: center;">A provider has responded to your service request:</p>
+
+      <!-- Request ID Highlight -->
+      <div style="background: #f0f9ff; padding: 16px; border-radius: 8px; margin: 24px 0; border-left: 4px solid #0ea5e9; text-align: center;">
+        <p style="margin: 0; font-weight: 700; color: #0f1724; font-size: 18px;">Request #{{ service_request.pk }}</p>
+      </div>
+
+      <!-- Provider Response Details -->
+      <div style="background: #f8f9fa; padding: 24px; border-radius: 8px; margin: 24px 0; border-left: 4px solid #0f1724;">
+        <div style="font-weight: 700; margin-bottom: 20px; color: #0f1724; font-size: 18px;">👤 Provider Response</div>
+
+        <div style="display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid #e5e7eb;">
+          <span style="color: #6b7280; font-weight: 600; font-size: 14px;">Provider:</span>
+          <span style="color: #0f1724; font-weight: 700; font-size: 15px;">{{ provider.full_name }}</span>
+        </div>
+
+        <div style="display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid #e5e7eb;">
+          <span style="color: #6b7280; font-weight: 600; font-size: 14px;">Response:</span>
+          <span style="color: #0f8a5f; font-weight: 700; font-size: 15px; background: #f0fdf4; padding: 4px 12px; border-radius: 20px;">{{ response.get_action_display }}</span>
+        </div>
+
+        {% if response.proposed_date %}
+        <div style="display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid #e5e7eb;">
+          <span style="color: #6b7280; font-weight: 600; font-size: 14px;">Proposed Date & Time:</span>
+          <span style="color: #0f1724; font-weight: 700; font-size: 15px;">{{ response.proposed_date }} {{ response.proposed_time }}</span>
+        </div>
+        {% endif %}
+
+        {% if response.message %}
+        <div style="padding: 10px 0;">
+          <div style="color: #6b7280; font-weight: 600; font-size: 14px; margin-bottom: 8px;">Provider's Message:</div>
+          <div style="color: #0f1724; font-size: 14px; background: #ffffff; padding: 12px; border-radius: 6px; border: 1px solid #e5e7eb; font-style: italic;">
+            "{{ response.message }}"
+          </div>
+        </div>
+        {% endif %}
+      </div>
+
+      <!-- Action Required -->
+      <div style="background: #fff3e0; padding: 20px; border-radius: 8px; margin: 24px 0; border-left: 4px solid #ff7a18;">
+        <div style="font-weight: 700; margin-bottom: 12px; color: #0f1724;">🎯 Next Steps</div>
+        <p style="margin: 0; color: #6b7280; font-size: 14px;">
+          View your request in your dashboard to accept this provider or review other responses.
+        </p>
+      </div>
+
+      <!-- Response Options -->
+      <div style="margin: 24px 0;">
+        <div style="font-size: 18px; font-weight: 700; margin-bottom: 16px; color: #0f1724;">Your Options:</div>
+
+        <div style="display: flex; align-items: flex-start; margin-bottom: 16px; padding: 12px; background: #f8f9fa; border-radius: 8px;">
+          <div style="background: #0ea5e9; color: white; width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; margin-right: 12px;">
+            1
+          </div>
+          <div style="flex: 1; color: #0f1724; font-size: 14px;">
+            <strong>Review the response</strong><br>
+            Check the provider's proposed timing and any message
+          </div>
+        </div>
+
+        <div style="display: flex; align-items: flex-start; margin-bottom: 16px; padding: 12px; background: #f8f9fa; border-radius: 8px;">
+          <div style="background: #0ea5e9; color: white; width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; margin-right: 12px;">
+            2
+          </div>
+          <div style="flex: 1; color: #0f1724; font-size: 14px;">
+            <strong>Compare with other providers</strong><br>
+            View all responses to make the best choice for your needs
+          </div>
+        </div>
+
+        <div style="display: flex; align-items: flex-start; margin-bottom: 16px; padding: 12px; background: #f8f9fa; border-radius: 8px;">
+          <div style="background: #0ea5e9; color: white; width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; margin-right: 12px;">
+            3
+          </div>
+          <div style="flex: 1; color: #0f1724; font-size: 14px;">
+            <strong>Select your provider</strong><br>
+            Accept this provider or choose from available options
+          </div>
+        </div>
+      </div>
+
+      <!-- Dashboard Button -->
+      <div style="text-align: center; margin: 32px 0;">
+        <a href="{{ request.build_absolute_uri|default:'#' }}" style="display: inline-block; padding: 16px 40px; background: #0ea5e9; color: white; text-decoration: none; border-radius: 8px; font-weight: 700; font-size: 16px; text-align: center; box-shadow: 0 4px 12px rgba(14,165,233,0.3);">
+          📊 View Response & Select Provider
+        </a>
+      </div>
+
+      <!-- Quick Action Tip -->
+      <div style="background: #f0fdf4; padding: 16px; border-radius: 8px; margin: 24px 0; border-left: 4px solid #0f8a5f;">
+        <p style="margin: 0; font-weight: 700; color: #0f1724;">💡 Quick Selection Recommended</p>
+        <p style="margin: 8px 0 0 0; color: #6b7280; font-size: 14px;">
+          Promptly selecting a provider ensures your service is scheduled quickly and helps maintain good response rates.
+        </p>
+      </div>
+
+      <!-- Closing -->
+      <div style="margin-top: 24px; padding-top: 20px; border-top: 1px solid #e5e7eb; text-align: center;">
+        <p style="margin: 0; font-weight: 600; color: #0f1724;">Thank you for using our services.</p>
+        <p style="margin: 8px 0 0 0; font-weight: 500; color: #6b7280; font-size: 14px;">Your Society Services Team</p>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div style="background: #f8f9fa; text-align: center; padding: 30px 20px; font-size: 13px; color: #6b7280; border-top: 1px solid #e5e7eb;">
+      <div style="margin-bottom: 8px;">
+        <strong>ResiReach - Skyhills Apartment Service Provider Network</strong>
+      </div>
+      <p style="margin: 8px 0 0 0; font-size: 12px;">
+        Connecting trusted service professionals with our community
+      </p>
+      <p style="margin: 16px 0 0 0; font-size: 12px; color: #9ca3af;">
+        © 2025 ResiReach. All rights reserved.
+      </p>
+    </div>
+  </div>
+</body>
+</html>

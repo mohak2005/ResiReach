@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>ResiReach Account Approved</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background-color: #f4f6f8;
+      margin: 0;
+      padding: 0;
+    }
+    .email-container {
+      max-width: 600px;
+      background-color: #ffffff;
+      margin: 40px auto;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    .header {
+      background: linear-gradient(135deg, #ffcc33, #ff9933);
+      color: #222;
+      text-align: center;
+      padding: 20px;
+    }
+    .content {
+      padding: 30px;
+      color: #333;
+    }
+    .content h2 {
+      color: #ff9933;
+      margin-bottom: 10px;
+    }
+    .button {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 12px 20px;
+      background: #ff9933;
+      color: white;
+      text-decoration: none;
+      border-radius: 6px;
+      font-weight: bold;
+    }
+    .footer {
+      background-color: #f1f1f1;
+      text-align: center;
+      padding: 15px;
+      font-size: 13px;
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+  <div class="email-container">
+    <div class="header">
+      <h1>ResiReach</h1>
+    </div>
+    <div class="content">
+      <h2>Hello {{ provider.full_name }},</h2>
+      <p>Your account has been successfully <strong>approved</strong> by the committee and is now active.</p>
+      <p>You can now log in to your ResiReach service provider account. Your document verification has been completed and verified. Now you can provide the {{ provider.service_category }} services in our society.</p>
+      <a href="http://127.0.0.1:8000/accounts/login/service-provider" class="button">Log In to ResiReach</a>
+      <p style="margin-top: 20px;">Your username: <strong>{{ user.username }}</strong></p>
+      <p>If you have any issues logging in, feel free to contact our support team.</p>
+      <p>Best regards,<br>The SkyHills Apartment Committee</p>
+    </div>
+    <div class="footer">
+      <p>© 2025 ResiReach | SkyHills Apartment</p>
+    </div>
+  </div>
+</body>
+</html>

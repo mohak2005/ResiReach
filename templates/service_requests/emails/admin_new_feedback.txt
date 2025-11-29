@@ -1,0 +1,8 @@
+New feedback received for Request #{{ service_request.pk }}.
+
+Provider: {{ feedback.provider.full_name }}
+Rating: {{ feedback.rating }}
+Comment: {{ feedback.comment }}
+Resident: {{ service_request.first_name }} {{ service_request.last_name }}
+
+Please review in admin.

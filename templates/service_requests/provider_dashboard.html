@@ -1,0 +1,299 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Provider Dashboard — ResiReach</title>
+  <meta name="description" content="Service Provider Dashboard — Manage your service requests and appointments." />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #f7f8fb;
+      --card: #ffffff;
+      --brand: #0f1724; /* navy */
+      --accent: #ff7a18; /* warm orange */
+      --muted: #6b7280;
+      --success: #0f8a5f;
+      --radius: 12px;
+      --max-width: 1100px;
+      --gap: 20px;
+      font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--brand);
+      line-height: 1.45;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 28px;
+    }
+
+    /* NAVBAR */
+    .topbar {
+      background-color: #fff;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      min-height: 60px;
+      display: flex;
+      align-items: center;
+      width: 100%;
+    }
+
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 0;
+      min-height: 50px;
+    }
+
+    .logo-img {
+      height: 40px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+    }
+
+    /* Dashboard Header */
+    .dashboard-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 28px;
+      padding: 20px 0;
+    }
+
+    .dashboard-header h1 {
+      font-size: 32px;
+      margin: 0;
+      color: var(--brand);
+    }
+
+    .provider-info {
+      background: var(--card);
+      padding: 15px 20px;
+      border-radius: var(--radius);
+      box-shadow: 0 6px 18px rgba(15,23,36,0.04);
+    }
+
+    .provider-info p {
+      margin: 0;
+      font-size: 16px;
+    }
+
+    .provider-info strong {
+      color: var(--accent);
+    }
+
+    /* Table Styling */
+    .table-container {
+      background: var(--card);
+      border-radius: var(--radius);
+      box-shadow: 0 6px 18px rgba(15,23,36,0.04);
+      overflow: hidden;
+      margin-bottom: 40px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    table th {
+      background: var(--brand);
+      color: white;
+      font-weight: 600;
+      text-align: left;
+      padding: 16px 20px;
+    }
+
+    table td {
+      padding: 16px 20px;
+      border-bottom: 1px solid rgba(15,23,36,0.04);
+    }
+
+    table tr:nth-child(even) {
+      background: rgba(15,23,36,0.02);
+    }
+
+    table tr:hover {
+      background: rgba(255,122,24,0.05);
+    }
+
+    /* Status Badges */
+    .status-badge {
+      display: inline-block;
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .status-pending { background: rgba(255, 165, 0, 0.1); color: orange; }
+    .status-responded { background: rgba(0, 0, 255, 0.1); color: blue; }
+    .status-confirmed { background: rgba(0, 128, 0, 0.1); color: green; }
+    .status-completed-provider { background: rgba(0, 100, 0, 0.1); color: darkgreen; }
+    .status-completed-resident { background: rgba(128, 0, 128, 0.1); color: purple; }
+
+    /* Buttons */
+    .action-buttons {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 8px 14px;
+      border-radius: 8px;
+      border: 1px solid transparent;
+      font-weight: 600;
+      cursor: pointer;
+      font-size: 14px;
+      transition: all 0.2s;
+    }
+
+    .btn-primary { background: var(--brand); color: #fff; }
+    .btn-success { background: var(--success); color: #fff; }
+    .btn:hover { transform: translateY(-2px); }
+
+  </style>
+</head>
+
+<body>
+
+  <!-- TOP NAV -->
+  <div class="topbar">
+    <div class="container nav">
+      <div class="logo">
+        <img src="{% static 'images/image.png' %}" alt="Skyhills Apartment Logo" class="logo-img" />
+      </div>
+    </div>
+  </div>
+
+  <main class="container">
+
+    <!-- Dashboard Header -->
+    <div class="dashboard-header">
+      <h1>Provider Dashboard — {{ provider.full_name }}</h1>
+
+      <div class="provider-info">
+        <p>Service Category: <strong>{{ provider.service_category }}</strong></p>
+      </div>
+    </div>
+
+    <!-- Incoming Requests Section -->
+    <div class="section-header">
+      <h3>Incoming Requests</h3>
+    </div>
+
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Resident</th>
+            <th>Service</th>
+            <th>Preferred</th>
+            <th>Status</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          {% for r in incoming %}
+          <tr>
+            <td>{{ r.pk }}</td>
+
+            <td>
+              <strong>{{ r.first_name }} {{ r.last_name }}</strong><br>
+              <small style="color: var(--muted);">{{ r.apartment_details }}</small><br>
+
+              <!-- 📞 Added Phone Number -->
+              <small style="color: var(--muted);">📞 {{ r.phone }}</small>
+            </td>
+
+            <td>{{ r.category.name }}</td>
+
+            <td>
+              <strong>{{ r.preferred_date }}</strong><br>
+              <small style="color: var(--muted);">{{ r.preferred_time }}</small>
+            </td>
+
+            <td>
+              {% if r.status == 'pending' %}
+                <span class="status-badge status-pending">Pending</span>
+              {% elif r.status == 'provider_responses' %}
+                <span class="status-badge status-responded">Responded</span>
+              {% elif r.status == 'confirmed' %}
+                <span class="status-badge status-confirmed">Confirmed</span>
+              {% elif r.status == 'completed_by_provider' %}
+                <span class="status-badge status-completed-provider">Completed by Provider</span>
+              {% elif r.status == 'completed_by_resident' %}
+                <span class="status-badge status-completed-resident">Closed</span>
+              {% endif %}
+            </td>
+
+            <td>
+              <div class="action-buttons">
+                {% if r.status != "completed_by_provider" and r.status != "completed_by_resident" %}
+                  <a href="{% url 'service_requests:provider_response' r.pk %}" class="btn btn-primary">Respond</a>
+                {% endif %}
+
+                {% if r.confirmed_provider == provider %}
+                  {% if r.status != "completed_by_provider" and r.status != "completed_by_resident" %}
+                    <a href="{% url 'service_requests:provider_mark_completed' r.pk %}" class="btn btn-success">Mark Completed</a>
+                  {% else %}
+                    <span class="btn btn-success" style="background: rgba(15, 138, 95, 0.2); color: var(--success); cursor: default;">
+                      ✔ Completed
+                    </span>
+                  {% endif %}
+                {% endif %}
+              </div>
+            </td>
+          </tr>
+
+          {% empty %}
+          <tr>
+            <td colspan="6" class="empty-state">
+              No requests available.
+            </td>
+          </tr>
+
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="container">
+    <div class="footer-content">
+      <div>© <strong>2025 ResiReach</strong> — Skyhills Apartment. All rights reserved.</div>
+      <div class="small-muted">Designed for community convenience • Powered by ResiReach</div>
+    </div>
+  </footer>
+
+</body>
+</html>

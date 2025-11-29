@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Accept Completed Work | ResiReach</title>
+  <style>
+    :root {
+      --bg: #f7f8fb;
+      --card: #ffffff;
+      --brand: #0f1724; /* navy */
+      --accent: #ff7a18; /* warm orange */
+      --muted: #6b7280;
+      --success: #0f8a5f;
+      --radius: 12px;
+      --max-width: 600px;
+      --gap: 20px;
+      --shadow: 0 6px 18px rgba(15,23,36,0.04);
+      font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--brand);
+      line-height: 1.45;
+      min-height: 100vh;
+      padding: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .container {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 40px 28px;
+      width: 100%;
+    }
+
+    /* Header */
+    .completion-header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .completion-header h2 {
+      font-size: 32px;
+      color: var(--brand);
+      margin-bottom: 16px;
+    }
+
+    .request-id {
+      background: var(--accent);
+      color: white;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 14px;
+      font-weight: 600;
+      display: inline-block;
+      margin-bottom: 16px;
+    }
+
+    /* Completion Card */
+    .completion-card {
+      background: var(--card);
+      padding: 40px;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      text-align: center;
+    }
+
+    .success-icon {
+      font-size: 64px;
+      margin-bottom: 24px;
+      color: var(--success);
+    }
+
+    .provider-info {
+      background: rgba(15,23,36,0.02);
+      padding: 20px;
+      border-radius: 8px;
+      margin-bottom: 24px;
+      border-left: 4px solid var(--accent);
+    }
+
+    .provider-label {
+      font-size: 14px;
+      color: var(--muted);
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .provider-name {
+      font-size: 18px;
+      color: var(--brand);
+      font-weight: 700;
+    }
+
+    .confirmation-message {
+      margin-bottom: 32px;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .confirmation-message p {
+      margin-bottom: 16px;
+    }
+
+    .highlight {
+      color: var(--brand);
+      font-weight: 600;
+    }
+
+    /* Form Elements */
+    .form-group {
+      margin-bottom: 24px;
+    }
+
+    .btn {
+      padding: 16px 32px;
+      border-radius: 8px;
+      border: none;
+      font-weight: 700;
+      cursor: pointer;
+      font-size: 16px;
+      transition: all 0.2s;
+      text-decoration: none;
+      display: inline-block;
+      text-align: center;
+      min-width: 200px;
+    }
+
+    .btn-success {
+      background: var(--success);
+      color: white;
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--brand);
+      border: 2px solid rgba(15,23,36,0.1);
+    }
+
+    .btn-success:hover {
+      background: #0d774f;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(15, 138, 95, 0.3);
+    }
+
+    .btn-outline:hover {
+      border-color: var(--accent);
+      transform: translateY(-2px);
+    }
+
+    .action-buttons {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    /* Features List */
+    .features-list {
+      text-align: left;
+      margin: 32px 0;
+      padding: 0 20px;
+    }
+
+    .feature-item {
+      display: flex;
+      align-items: flex-start;
+      margin-bottom: 16px;
+      padding: 12px;
+      background: rgba(15,23,36,0.02);
+      border-radius: 8px;
+    }
+
+    .feature-icon {
+      color: var(--success);
+      margin-right: 12px;
+      font-size: 18px;
+      margin-top: 2px;
+    }
+
+    .feature-text {
+      flex: 1;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .container {
+        padding: 28px 20px;
+      }
+      
+      .completion-header h2 {
+        font-size: 28px;
+      }
+      
+      .completion-card {
+        padding: 28px;
+      }
+      
+      .action-buttons {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .btn {
+        width: 100%;
+        max-width: 300px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .container {
+        padding: 20px 16px;
+      }
+      
+      .completion-header h2 {
+        font-size: 24px;
+      }
+      
+      .completion-card {
+        padding: 20px;
+      }
+      
+      .success-icon {
+        font-size: 48px;
+      }
+      
+      .features-list {
+        padding: 0 10px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <!-- Header -->
+    <div class="completion-header">
+      <div class="request-id">Request #{{ sr.pk }}</div>
+      <h2>Accept Completed Work</h2>
+    </div>
+
+    <!-- Completion Card -->
+    <div class="completion-card">
+      <div style="background: #0f8a5f; color: white; width: 80px; height: 80px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 36px; font-weight: bold; margin-bottom: 16px;">
+          ✓
+        </div>
+      
+      <!-- Provider Information -->
+      <div class="provider-info">
+        <div class="provider-label">Service Provider</div>
+        <div class="provider-name">{{ sr.confirmed_provider.full_name }}</div>
+      </div>
+
+      <!-- Confirmation Message -->
+      <div class="confirmation-message">
+        <p>By accepting, you confirm that the work has been completed to your satisfaction.</p>
+        <p class="highlight">You will be redirected to provide a rating and feedback for the service.</p>
+      </div>
+
+      <!-- Features List -->
+      <div class="features-list">
+        <div class="feature-item">
+          <span class="feature-icon">✓</span>
+          <span class="feature-text">Confirm the quality of work meets your expectations</span>
+        </div>
+        <div class="feature-item">
+          <span class="feature-icon">✓</span>
+          <span class="feature-text">Help other residents by sharing your experience</span>
+        </div>
+        <div class="feature-item">
+          <span class="feature-icon">✓</span>
+          <span class="feature-text">Support our community of trusted service providers</span>
+        </div>
+      </div>
+
+      <!-- Form -->
+      <form method="post">
+        {% csrf_token %}
+        <div class="action-buttons">
+          <button type="submit" class="btn btn-success">
+             Accept Completion
+          </button>
+          <a href="{% url 'service_requests:resident_request_detail' sr.pk %}" class="btn btn-outline">
+            ↩ Back to Details
+          </a>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    // Add animations and interactions
+    document.addEventListener('DOMContentLoaded', function() {
+      // Animate the success icon
+      const successIcon = document.querySelector('.success-icon');
+      if (successIcon) {
+        successIcon.style.opacity = '0';
+        successIcon.style.transform = 'scale(0.5)';
+        
+        setTimeout(() => {
+          successIcon.style.transition = 'all 0.6s ease';
+          successIcon.style.opacity = '1';
+          successIcon.style.transform = 'scale(1)';
+        }, 300);
+      }
+
+      // Animate feature items
+      const featureItems = document.querySelectorAll('.feature-item');
+      featureItems.forEach((item, index) => {
+        item.style.opacity = '0';
+        item.style.transform = 'translateX(-20px)';
+        
+        setTimeout(() => {
+          item.style.transition = 'all 0.5s ease';
+          item.style.opacity = '1';
+          item.style.transform = 'translateX(0)';
+        }, 600 + (index * 100));
+      });
+
+      // Animate buttons
+      const buttons = document.querySelectorAll('.btn');
+      buttons.forEach((btn, index) => {
+        btn.style.opacity = '0';
+        btn.style.transform = 'translateY(20px)';
+        
+        setTimeout(() => {
+          btn.style.transition = 'all 0.5s ease';
+          btn.style.opacity = '1';
+          btn.style.transform = 'translateY(0)';
+        }, 1000 + (index * 100));
+      });
+
+      // Add hover effect to feature items
+      featureItems.forEach(item => {
+        item.addEventListener('mouseenter', function() {
+          this.style.transform = 'translateX(8px)';
+          this.style.background = 'rgba(255,122,24,0.05)';
+        });
+        
+        item.addEventListener('mouseleave', function() {
+          this.style.transform = 'translateX(0)';
+          this.style.background = 'rgba(15,23,36,0.02)';
+        });
+      });
+
+      // Form submission confirmation
+      const form = document.querySelector('form');
+      if (form) {
+        form.addEventListener('submit', function(e) {
+          const submitBtn = this.querySelector('button[type="submit"]');
+          if (submitBtn) {
+            submitBtn.innerHTML = '⏳ Processing...';
+            submitBtn.disabled = true;
+          }
+        });
+      }
+    });
+  </script>
+</body>
+
+</html>

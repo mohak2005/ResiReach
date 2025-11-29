@@ -1,0 +1,423 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard | ResiReach</title>
+    <style>
+        :root {
+            --bg: #f7f8fb;
+            --card: #ffffff;
+            --brand: #0f1724;
+            --accent: #ff7a18;
+            --muted: #6b7280;
+            --success: #0f8a5f;
+            --radius: 12px;
+            --max-width: 1100px;
+            --gap: 20px;
+            --shadow: 0 6px 18px rgba(15,23,36,0.04);
+            font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--brand);
+            line-height: 1.45;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 28px;
+        }
+
+        .dashboard-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 28px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid rgba(15,23,36,0.1);
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-img {
+            height: 40px;
+        }
+
+        .admin-title {
+            font-size: 24px;
+            color: var(--brand);
+            font-weight: 700;
+        }
+
+        .cards {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .card {
+            flex: 1 1 200px;
+            background: var(--card);
+            padding: 20px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            text-align: center;
+            transition: 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(15,23,36,0.08);
+        }
+
+        .card h2 {
+            font-size: 32px;
+            color: var(--accent);
+            margin-bottom: 10px;
+        }
+
+        .card p {
+            font-size: 14px;
+            color: var(--muted);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: var(--card);
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            margin-bottom: 40px;
+        }
+
+        table th,
+        table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid rgba(15,23,36,0.04);
+            text-align: left;
+        }
+
+        table th {
+            background: var(--brand);
+            color: white;
+            font-weight: 600;
+        }
+
+        a.button {
+            padding: 6px 10px;
+            border-radius: 6px;
+            text-decoration: none;
+            color: white;
+            font-size: 13px;
+            transition: 0.2s;
+            display: inline-block;
+            font-weight: 500;
+        }
+
+        a.approve { background: var(--success); }
+        a.reject { background: #e74c3c; }
+        a.delete { background: #c0392b; }
+
+        /* NEW BUTTONS FOR STAFF/SUPERUSER/DEMOTE */
+        a.staff { background: #f39c12; }
+        a.superuser { background: #8e44ad; }
+        a.demote { background: #7f8c8d; }
+
+        a.button:hover {
+            opacity: 0.85;
+            transform: translateY(-2px);
+        }
+
+        /* Provider card styles unchanged */
+        .providers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .provider-card {
+            background: var(--card);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 20px;
+            transition: 0.3s ease;
+        }
+
+        .provider-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(15,23,36,0.08);
+        }
+
+        .provider-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(15,23,36,0.1);
+        }
+
+        .provider-name {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--brand);
+        }
+
+        .provider-category {
+            background: rgba(255,122,24,0.1);
+            color: var(--accent);
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .detail-group { margin-bottom: 10px; }
+        .detail-label { font-size: 12px; color: var(--muted); margin-bottom: 4px; }
+        .detail-value { font-size: 14px; font-weight: 500; }
+
+        .provider-status {
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .status-approved { background: rgba(15,138,95,0.1); color: var(--success); }
+        .status-pending { background: rgba(231,76,60,0.1); color: #e74c3c; }
+    </style>
+</head>
+
+<body>
+    <main class="container">
+
+        <div class="dashboard-header">
+            <div class="logo-container">
+                <img src="{% static 'images/image.png' %}" class="logo-img">
+                <div class="admin-title">Admin Dashboard</div>
+            </div>
+        </div>
+
+        {% if messages %}
+            <div class="messages">
+                {% for message in messages %}
+                    <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+                {% endfor %}
+            </div>
+        {% endif %}
+
+        <!-- ----------------- RESIDENT MANAGEMENT ---------------- -->
+        <div class="section-header"><h2>Resident Management</h2></div>
+
+        <div class="cards">
+            <div class="card"><h2>{{ total_residents }}</h2><p>Total Residents</p></div>
+            <div class="card"><h2>{{ pending_residents }}</h2><p>Pending Approval</p></div>
+            <div class="card"><h2>{{ approved_residents }}</h2><p>Approved Residents</p></div>
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Username</th>
+                    <th>Full Name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Flat</th>
+                    <th>Address</th>
+                    <th>ID Document</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for user in residents %}
+                <tr>
+                    <td>{{ user.username }}</td>
+                    <td>{{ user.full_name }}</td>
+                    <td>{{ user.email }}</td>
+                    <td>{{ user.phone }}</td>
+                    <td>{{ user.flat_number }}</td>
+                    <td>{{ user.address }}</td>
+
+                    <td>
+                        {% if user.document %}
+                            <a href="{{ user.document }}" target="_blank">View</a>
+                        {% else %}
+                            N/A
+                        {% endif %}
+                    </td>
+
+                    <td>
+                        {% if user.is_active %}
+                            <span style="color: var(--success); font-weight: bold;">Approved</span>
+                        {% else %}
+                            <span style="color:#e74c3c; font-weight:bold;">Pending</span>
+                        {% endif %}
+                    </td>
+
+                    <td>
+                        {% if not user.is_active %}
+                            <a class="button approve" href="{% url 'custom_admin:approve_resident' user.id %}">Approve</a>
+                            <a class="button reject" href="{% url 'custom_admin:reject_resident' user.id %}">Reject</a>
+                        {% endif %}
+
+                        <a class="button delete" href="{% url 'custom_admin:delete_resident' user.id %}">Delete</a>
+
+                        {% if not user.is_staff %}
+                            <a class="button staff" href="{% url 'custom_admin:make_staff' user.id %}">Make Staff</a>
+                        {% endif %}
+
+                        {% if not user.is_superuser %}
+                            <a class="button superuser" href="{% url 'custom_admin:make_superuser' user.id %}">Make Admin</a>
+                        {% endif %}
+
+                        {% if user.is_staff or user.is_superuser %}
+                            <a class="button demote" href="{% url 'custom_admin:demote_user' user.id %}">Demote</a>
+                        {% endif %}
+                    </td>
+
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <!-- ----------------- SERVICE PROVIDER MANAGEMENT ---------------- -->
+        <div class="section-header"><h2>Service Provider Management</h2></div>
+
+        <div class="cards">
+            <div class="card"><h2>{{ total_providers }}</h2><p>Total Service Providers</p></div>
+            <div class="card"><h2>{{ pending_providers }}</h2><p>Pending Approval</p></div>
+            <div class="card"><h2>{{ approved_providers }}</h2><p>Approved Providers</p></div>
+        </div>
+
+        <div class="providers-grid">
+            {% for provider in service_providers %}
+            <div class="provider-card">
+
+                <div class="provider-header">
+                    <div class="provider-name">{{ provider.full_name }}</div>
+                    <div class="provider-category">{{ provider.service_category }}</div>
+                </div>
+
+                <!-- BASIC DETAILS -->
+                <div class="provider-details">
+                    <div class="detail-group"><div class="detail-label">Username</div><div class="detail-value">{{ provider.username }}</div></div>
+                    <div class="detail-group"><div class="detail-label">Gender</div><div class="detail-value">{{ provider.gender }}</div></div>
+                    <div class="detail-group"><div class="detail-label">DOB</div><div class="detail-value">{{ provider.dob }}</div></div>
+                    <div class="detail-group"><div class="detail-label">Parent Name</div><div class="detail-value">{{ provider.parent_name }}</div></div>
+                    <div class="detail-group"><div class="detail-label">Mobile</div><div class="detail-value">{{ provider.mobile }}</div></div>
+
+                    <div class="detail-group"><div class="detail-label">Email</div><div class="detail-value">{{ provider.email }}</div></div>
+                    <div class="detail-group"><div class="detail-label">Experience</div><div class="detail-value">{{ provider.experience }} years</div></div>
+                    <div class="detail-group"><div class="detail-label">Working Hours</div><div class="detail-value">{{ provider.working_hours }}</div></div>
+                    <div class="detail-group"><div class="detail-label">Service Area</div><div class="detail-value">{{ provider.service_area }}</div></div>
+
+                    <div class="detail-group">
+                        <div class="detail-label">Rating</div>
+                        <div class="detail-value">
+                            {% if provider.avg_rating %}
+                                <span style="color: var(--accent); font-size: 14px;">★</span>
+                                {{ provider.avg_rating|floatformat:1 }}
+                            {% else %}
+                                No Ratings
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="detail-group">
+                    <div class="detail-label">Address</div>
+                    <div class="detail-value">{{ provider.address }}, {{ provider.city }}, {{ provider.state }} - {{ provider.pincode }}</div>
+                </div>
+
+                <div class="detail-group">
+                    <div class="detail-label">Skills</div>
+                    <div class="detail-value">{{ provider.skills }}</div>
+                </div>
+
+                <!-- DOCUMENTS -->
+                <div class="detail-group">
+                    <div class="detail-label">Documents</div>
+                    <div class="detail-value">
+                        <strong>ID:</strong> {{ provider.govt_id_type }} ({{ provider.govt_id_number }})<br>
+
+                        {% if provider.govt_id_document %}
+                            <a href="{{ provider.govt_id_document.url }}" target="_blank">View ID</a><br>
+                        {% endif %}
+                        {% if provider.address_proof %}
+                            <a href="{{ provider.address_proof.url }}" target="_blank">Address Proof</a><br>
+                        {% endif %}
+                        {% if provider.work_certificate %}
+                            <a href="{{ provider.work_certificate.url }}" target="_blank">Work Certificate</a><br>
+                        {% endif %}
+                        {% if provider.profile_photo %}
+                            <a href="{{ provider.profile_photo.url }}" target="_blank">Profile Photo</a>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <!-- REFERENCES -->
+                <div class="detail-group">
+                    <div class="detail-label">References</div>
+                    <div class="detail-value">
+                        {% if provider.references %}
+                            <ul style="padding-left:15px; margin:5px 0;">
+                                {% for ref in provider.references %}
+                                <li>
+                                    <strong>{{ ref.customer_name }}</strong> ({{ ref.customer_contact }})<br>
+                                    <small>{{ ref.customer_address }}</small><br>
+                                    <em>{{ ref.service_description }}</em>
+                                </li>
+                                {% endfor %}
+                            </ul>
+                        {% else %}
+                            No references available.
+                        {% endif %}
+                    </div>
+                </div>
+
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-top:15px;">
+                    <div class="provider-status {% if provider.is_verified %}status-approved{% else %}status-pending{% endif %}">
+                        {% if provider.is_verified %}Approved{% else %}Pending Approval{% endif %}
+                    </div>
+
+                    <div>
+                        {% if not provider.is_verified %}
+                            <a class="button approve" href="{% url 'custom_admin:approve_service_provider' provider.id %}">Approve</a>
+                            <a class="button reject" href="{% url 'custom_admin:reject_service_provider' provider.id %}">Reject</a>
+                        {% endif %}
+                        <a class="button delete" href="{% url 'custom_admin:delete_service_provider' provider.id %}">Delete</a>
+                    </div>
+                </div>
+
+            </div>
+            {% empty %}
+            <div style="grid-column:1 / -1; text-align:center; padding:40px; background:var(--card); border-radius:var(--radius);">
+                No service providers found.
+            </div>
+            {% endfor %}
+        </div>
+
+    </main>
+</body>
+</html>

@@ -1,0 +1,66 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Contact — ResiReach</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+  <div class="topbar" role="banner">
+    <div class="container nav" role="navigation" aria-label="Main navigation">
+      <div class="logo">
+        <img src="{% static 'images/image.png' %}" alt="Skyhills Apartment Logo" class="logo-img" />
+      </div>
+      <nav class="nav-links" id="navLinks">
+  <a href="/">Home</a>
+        <a href="/about/">About Society</a>
+        <a href="/committee/">RWA Members</a>
+  <a href="/#notices">Notices</a>
+  <a href="/#events">Events</a>
+        <a href="/services/">Services</a>
+  <a href="/#follow" style="color: #e7770e;">Contact</a>
+        <a class="cta" href="login.html" id="requestBtnTop">Resident Login</a>
+      </nav>
+      <button class="hamburger" id="hamburger" aria-label="Open menu">☰</button>
+    </div>
+  </div>
+
+  <main class="container">
+    <section aria-labelledby="contactTitle">
+      <div class="section-title">
+        <h2 id="contactTitle">Contact & Help Desk</h2>
+        <div class="small-muted">Office hours: Mon–Sat, 10:00–17:00</div>
+      </div>
+
+      <div class="contact-container">
+        <div class="office-info">
+          <div style="font-weight:700">Society Office</div>
+          <div class="small-muted" style="margin-top:6px">Block A, Ground Floor, Skyhills Apartment</div>
+          <div style="margin-top:12px"><strong>Phone:</strong> 9999-XXXXXX</div>
+          <div style="margin-top:6px"><strong>Email:</strong> office@example.com</div>
+        </div>
+
+        <form class="contact-form" onsubmit="event.preventDefault(); alert('Message sent.');">
+          <div style="font-weight:700;margin-bottom:10px">Send a message</div>
+          <input type="text" placeholder="Your name" required style="margin-bottom:8px">
+          <input type="email" placeholder="Your email" required style="margin-bottom:8px">
+          <textarea rows="3" placeholder="Message" required style="margin-bottom:8px"></textarea>
+          <button class="btn btn-primary" type="submit">Send</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="container" role="contentinfo">
+    <div class="footer-content">
+      <div>© <strong>2025 ResiReach</strong> — Skyhills Apartment. All rights reserved.</div>
+      <div class="small-muted">Designed for community convenience • Powered by ResiReach</div>
+    </div>
+  </footer>
+
+  <script src="{% static 'script.js' %}"></script>
+</body>
+</html>
