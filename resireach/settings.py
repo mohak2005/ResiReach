@@ -83,12 +83,12 @@ TEMPLATES = [
 WSGI_APPLICATION = 'resireach.wsgi.application'
 
 
-# Database (SQLite)
+import dj_database_url
+
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+    'default': dj_database_url.parse(
+        "postgresql://neondb_owner:npg_VQ9ke0DpYGgT@ep-billowing-morning-amg30i2f-pooler.c-5.us-east-1.aws.neon.tech/neondb?sslmode=require&channel_binding=require"
+    )
 }
 
 
